@@ -148,8 +148,8 @@ a.navbarBrand:active {
     color: black;
     font-size: 15px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 20%;
+    left: 40%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
@@ -159,6 +159,12 @@ a.navbarBrand:active {
     color: black;
 }
 
+/* Knapp på overlay för att spara event */
+.knappOverlay1 {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+}
 /* Profile */
 
 -Pbody {
