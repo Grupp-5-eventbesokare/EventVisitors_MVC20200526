@@ -9,9 +9,11 @@ using System.Net.Http.Headers;
 using System.Net.Http.Formatting;
 using Newtonsoft.Json;
 using System.Web.UI.WebControls;
+using System.Web.Mvc;
 
 namespace EventVisitors_MVC.Controllers
 {
+
     public class BookingsClass
     {
         public int User_Id { get; set; }
@@ -21,10 +23,8 @@ namespace EventVisitors_MVC.Controllers
         public string User_Type { get; set; }
     }
 
-    
     class SavedEventsController
     {
-
         static void Main(string[] args)
         {
             using (var client = new HttpClient())
