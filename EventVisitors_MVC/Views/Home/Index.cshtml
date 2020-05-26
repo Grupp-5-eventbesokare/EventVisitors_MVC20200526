@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
+
+@{
+    ViewBag.Title = "Startsida";
+}
+
+<div class="sok text-center jumbotron">
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 sokruta" type="search" placeholder="Sök event...." aria-label="Search">
+        <button class="btn searchButton my-2 my-sm-0 sokknapp" type="submit">Sök</button>
+    </form>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="containerr col-md-3">
+        <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" /> <!-- ~/Image/Images_Events/Exhibition.jpg -->
+        <br />
+        <div class="card-body d-flex flex-column">
+            <p>
+                @Html.DisplayFor(modelItem => item.Event_Name)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Event_Imagelink)
+            </p>
+            <p>
+                Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
+            </p>
+            <p>
+                Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
+            </p>
+            <p>
+                Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
+            </p>
+            <p>
+                Arrangör: Namn på arrangör
+            </p>
+        </div>
+        <div class="overlay">
+            <p class="text">
+                @Html.DisplayFor(modelItem => item.Event_Description)
+            </p>
+            <p>
+                Plats:
+            </p>
+        </div>
+    </div>
+    }
+</div>

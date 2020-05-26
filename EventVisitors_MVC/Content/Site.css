@@ -1,0 +1,172 @@
+﻿body {
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* HÄR NEDAN FINNS GEMENSAM DESIGN FÖR HELA SYSTEMET: */
+
+/*Allt till navbaren*/
+
+/* Detta gäller hela navbaren */
+.navbar {
+    background-color: #b6e0ea;
+    height: 80px;
+    margin-bottom: 50px;
+}
+
+/* Ändra texten i navbaren */
+.navel a {
+    color: black;
+}
+
+.navel:active {
+    color: black !important;
+    background-color: lightblue !important;
+}
+
+/* När du hovrar över en länk i navbaren */
+.navel a:hover {
+        color: black !important;
+        background-color: lightblue !important;
+    }
+
+/* Få alla länkar centrerade till vänster i navbaren - Lägg till denna i rad 11 av _Layout.cshtml och vid den befintliga klassen i div:en */
+.navbarTextiMitten {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+/* Ändra första på länken på navbaren */
+a.navbarBrand {
+    color: black;
+    font-size: 35px;
+}
+
+a.navbarBrand:hover {
+        color: black;
+        font-weight: bold;
+        font-size: 35px;
+}
+
+a.navbarBrand:active {
+        color: black;
+        font-weight: bold;
+        font-size: 35px;
+}
+
+/* Design till formulär och input */
+
+/* Design på knappar: använd class="btn knapp" */
+.knapp {
+    border-radius: 15px 15px;
+}
+
+/* Design till input-formulär */
+.rundaKanter {
+    border-radius: 15px 15px;
+}
+
+/* Startpage */
+
+/* Detta är designen till sökfunktionen */
+
+.sok {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/* Textrutan för sök */
+.sokruta {
+    width: 1200px;
+    height: 50px;
+    border-radius: 15px 15px;
+    font-size: 20px
+}
+
+/* Knappen för sök */
+.sokknapp {
+    height: 50px;
+    width: 80px;
+    font-size: 20px;
+    border-radius: 15px 15px;
+}
+
+/* Bakgrunden på sökrutan */
+.jumbotron {
+    background-image: url('../Image/sokBild.jpg');
+}
+
+/*Design till korten som visar upp eventen*/
+
+/* Kontainer som omger ett event */
+.containerr {
+    position: relative;
+    width: 30%;
+    padding: 20px;
+}
+
+/* Bilden som visas upp gällande ett specifikt event */
+.imageStart {
+    display: block;
+    width: 100%;
+    height: 232px;
+}
+
+/* När man hovrar över ett event */
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #b6e0ea;
+}
+
+.containerr:hover .overlay {
+    opacity: 1;
+}
+
+/* Texten som visas i lagret som framträder när man hovrar */
+.text {
+    color: black;
+    font-size: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+/* Länkar som omger alla korten för event */
+.card-link-text {
+    color: black;
+}
+
+/* Profile */
+
+-Pbody {
+    padding-top: 30px;
+}
+
+.glyphicon {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+

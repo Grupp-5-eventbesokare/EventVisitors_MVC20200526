@@ -1,0 +1,18 @@
+﻿@model EventVisitors_MVC.Models.LoginClass
+@{
+    ViewBag.Title = "LoginView";
+}
+
+<h2>LoginView</h2>
+
+<!--Nedan används en html healper för att skapa ett formulär.-->
+@using (Html.BeginForm())
+{
+    <h2>Loggin</h2>
+    <div> User Name: </div>
+    <div>@Html.TextBoxFor(m => m.Username)</div> <!--Html healper text box för användar namn som skikar variabeln Usr.-->
+    <div> Password: </div>
+    <div>@Html.TextBoxFor(m => m.Password)</div> <!--Html healper text box för användar namn som skikar variabeln Psw.-->
+    <div><input type="submit" value="Logg in" /><br /></div> <!--Skickar iväg innehållet i text boxarna ovan som post som controllern kan kontrollera.-->
+    <div>@Html.ValidationSummary()</div> <!--Visar felmedelande om något i inlognings fältet inte stämmer.-->
+}

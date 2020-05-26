@@ -1,0 +1,34 @@
+﻿@model EventVisitors_MVC.Models.ProfilesClass
+
+@{
+    ViewBag.Title = "Min Profil";
+}
+
+<div class="container Pbody">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="~/Image/Image_Profiles/Anonym.png" class="img-rounded img-responsive image" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            @Html.DisplayFor(modelItem => modelItem.Profile_Firstname) @Html.DisplayFor(modelItem => modelItem.Profile_Lastname)
+                        </h4>
+                        <p>
+                            <br />
+                            <i class="glyphicon glyphicon-envelope"> </i> @Html.DisplayFor(modelItem => modelItem.Profile_Email)
+                            <br />
+                            <i class="glyphicon glyphicon-gift"> </i> <!--Html.DisplayFor(modelItem => modelItem.Profile_Birthday)-->
+                            <br />
+                            <i class="glyphicon glyphicon-phone"> </i> <!--Html.DisplayFor(modelItem => modelItem.Profile_PhoneNr)-->
+                            <br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

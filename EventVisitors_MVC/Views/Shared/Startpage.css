@@ -1,0 +1,82 @@
+﻿body {
+}
+
+/* Detta är designen för startsidan som en besökare kommer till */
+
+/* Detta är designen till sökfunktionen */
+
+.sok {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/* Textrutan för sök */
+.sokruta {
+    width: 1200px;
+    height: 50px;
+    border-radius: 15px 15px;
+    font-size: 20px
+}
+
+/* Knappen för sök */
+.sokknapp {
+    height: 50px;
+    width: 80px;
+    font-size: 20px;
+    border-radius: 15px 15px;
+}
+
+/* Bakgrunden på sökrutan */
+.jumbotron {
+    background-image: url('../../Image/sokBild.jpg');
+}
+
+/*Design till korten som visar upp eventen*/
+
+/* Kontainer som omger ett event */
+.containerr {
+    position: relative;
+    width: 30%;
+    padding: 20px;
+}
+
+/* Bilden som visas upp gällande ett specifikt event */
+.imageStart {
+    display: block;
+    width: 100%;
+    height: 232px;
+}
+
+/* När man hovrar över ett event */
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #b6e0ea;
+}
+
+.containerr:hover .overlay {
+    opacity: 1;
+}
+
+/* Texten som visas i lagret som framträder när man hovrar */
+.text {
+    color: black;
+    font-size: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+/* Länkar som omger alla korten för event */
+.card-link-text {
+    color: black;
+}
