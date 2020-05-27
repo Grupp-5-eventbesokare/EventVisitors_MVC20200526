@@ -170,3 +170,43 @@ a.navbarBrand:active {
     margin-right: 10px;
 }
 
+/* Försöker designa Footern */
+
+.customBlock {
+    float: left;
+}
+
+.dropd {
+    border-color: black;
+    border: 20px;
+    color: black;
+    background-color: white;
+    float: right;
+}
+
+.dropdItem {
+    padding: 10px;
+    float: left !important;
+}
+
+.dropd a {
+    color: black;
+}
+
+.dropd a:hover {
+    color: black;
+    background-color: #b6e0ea;
+}
+
+.dropd a::after {
+    color: black;
+}
+
+.dropd a:active {
+    color: black;
+    background-color: #b6e0ea;
+}
+
+.tab {
+    tab-size: 4;
+}
