@@ -72,7 +72,9 @@
                     Plats:
                 </p>
                 <div class="knappOverlay1">
-                    <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
+                    <form action="~/Save/" method="post">
+                        <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
+                    </form>
                     <br />
                     @if (item.Event_Seeking_Volunteers == true)
                     {

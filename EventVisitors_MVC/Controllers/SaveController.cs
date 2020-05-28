@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net.Http;
 using System.Web.Mvc;
 
 namespace EventVisitors_MVC.Controllers
@@ -13,6 +11,39 @@ namespace EventVisitors_MVC.Controllers
 
         //Gjorde vyn utifrån EventsClass, vet inte om vi ska ha en annan klass eller det är det som skall vara?
 
+        public class BookingsClass
+        {
+            public int Profile_Id { get; set; }
+
+            public int Event_Id { get; set; }
+
+            public string Profile_Role { get; set; }
+        }
+
+        class SaveEventsController
+        {
+            static void Main(string[] args)
+            {
+                using (var client = new HttpClient())
+                {
+
+                    BookingsClass b = new BookingsClass { Profile_Id = 1, Event_Id = 2, Profile_Role = "Besökare" };
+                    client.BaseAddress = new Uri("http://193.10.202.81/BookingService");
+                    var response = client.PostAsJsonAsync("/api/Bookings", b).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.Write("Success");
+                    }
+                    else
+                    {
+                        Console.Write("Error");
+                    }
+
+                }
+
+            }
+        }
 
         //Index för Sparade Event
         public ActionResult Index()

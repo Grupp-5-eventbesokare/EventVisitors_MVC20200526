@@ -199,11 +199,11 @@
     <Content Include="Views\SignIn\LoginView.cshtml" />
     <Content Include="Views\SignIn\Index.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
-    <Content Include="Views\Registration\RegistrationUser.cshtml" />
     <Content Include="Views\Login\LoginUser.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Save\Index.cshtml" />
     <Content Include="Views\Save\ApplyedAsVolonteer.cshtml" />
+    <Content Include="Views\Registration\RegistrationUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
