@@ -1,10 +1,10 @@
 ﻿@model EventVisitors_MVC.Models.RegistrationClass
 
 @{
-    ViewBag.Title = "RegistrationUser";
+    ViewBag.Title = "Registrering";
 }
 
-<h2>Registreringsformulär</h2>
+<h2>Registrering av ny profil</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -69,5 +69,5 @@
 }
 
 <div>
-    <!--Html.ActionLink("Back to List", "Index")-->
+    @Html.ActionLink("Redan registrerad?", "LoginUser", "Login")
 </div>
