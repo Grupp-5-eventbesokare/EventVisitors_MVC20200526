@@ -1,0 +1,151 @@
+﻿@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
+
+<h4>Volontärs anmälningar</h4>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <!--Kan inte köra denna pga null värden men hoppas designen blir bra annars kan man väll ta bort *scope="col"*
+                Men borde se ok ut. Roligare kan vi göra om vi hinner.
+                Detta borde ävern kunna klistras in på visa volontärsanmälningar eftersom listan kan se likadan ut.  -->
+            <th scope="col"> Event</th>
+            <th scope="col"> Event Startar </th>
+            <th scope="col"> Event Slutar </th>
+            <th scope="col"> Plats </th>
+            <th scope="col"> Aktivt Event <!-- Bara för att se att ifsatsen funkar, denna behövs inte sen? --> </th>
+            <th scope="col"> ArrangörsId <!--Kan vara arrangör här sedan istället för id--> </th>
+            <th scope="col"> Söker Volontär </th>
+            <th scope="col"> Kategorie </th>
+            <th scope="col"> Beskrivning </th>
+            <th scope="col"> Pris </th>
+            <th scope="col"> Eventet Skapades <!--Kanske skiter i detta? --> </th>
+            <th scope="col">Ta bort sparad event <!--Ska finnas något med bokningsgruppens api funktion --></th>
+        </tr>
+    </thead>
+    <!--Visa aktiva event som man har anmält som volontär-->
+
+    @foreach (var item in Model)
+    {
+        if (item.Event_Active == true)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_End_Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Arranger_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Seeking_Volunteers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Category_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Create_Datetime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+
+        }
+
+    }
+
+</table>
+
+<br/>
+<br/>
+
+<!--OM vi ska visa detta.. (Har ej kunnat testa-->
+
+<h4> Borttagna Event: </h4>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <!--Kan inte köra denna pga null värden men hoppas designen blir bra annars kan man väll ta bort *scope="col"*
+                Men borde se ok ut. Roligare kan vi göra om vi hinner.
+                Detta borde ävern kunna klistras in på visa volontärsanmälningar eftersom listan kan se likadan ut.  -->
+            <th scope="col"> Event</th>
+            <th scope="col"> Event Startar </th>
+            <th scope="col"> Event Slutar </th>
+            <th scope="col"> Plats </th>
+            <th scope="col"> Aktivt Event <!-- Bara för att se att ifsatsen funkar, denna behövs inte sen? --> </th>
+            <th scope="col"> ArrangörsId <!--Kan vara arrangör här sedan istället för id--> </th>
+            <th scope="col"> Söker Volontär </th>
+            <th scope="col"> Kategorie </th>
+            <th scope="col"> Beskrivning </th>
+            <th scope="col"> Pris </th>
+            <th scope="col"> Eventet Skapades <!--Kanske skiter i detta? --> </th>
+            <th scope="col">Ta bort sparad event <!--Ska finnas något med bokningsgruppens api funktion --></th>
+        </tr>
+    </thead>
+    <!--Visa aktiva event som man har anmält som volontär-->
+
+    @foreach (var item in Model)
+    {
+        if (item.Event_Active == false)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_End_Datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Arranger_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Seeking_Volunteers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Category_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event_Create_Datetime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+
+        }
+
+    }
+
+</table>

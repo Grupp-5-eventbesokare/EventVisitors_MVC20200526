@@ -13,7 +13,6 @@ using System.Web.Mvc;
 
 namespace EventVisitors_MVC.Controllers
 {
-    /* [Authorize] */ // Då denna controller endast ska vara tillgänglig om man är inloggad är åtkomsträttigheten "Authorize"
 
     public class BookingsClass
     {
@@ -23,10 +22,9 @@ namespace EventVisitors_MVC.Controllers
 
         public string User_Type { get; set; }
     }
-    
+
     class SavedEventsController
     {
-
         static void Main(string[] args)
         {
             using (var client = new HttpClient())

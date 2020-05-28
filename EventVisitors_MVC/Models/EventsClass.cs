@@ -19,7 +19,7 @@ namespace EventVisitors_MVC.Models
 
         public int Event_Location_Id { get; set; }
 
-        public string Event_Category_Name { get; set; }
+        public string Event_Category { get; set; }
 
         public string Event_Description { get; set; }
 

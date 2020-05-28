@@ -15,12 +15,11 @@ namespace EventVisitors_MVC.Controllers
     public class RegistrationController : Controller
     {
 
-
         public ActionResult Index()
         {
 
                 return View();
-            }
+        }
 
         public ActionResult RegistrationUser()
         {
