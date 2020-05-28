@@ -17,7 +17,7 @@ namespace EventVisitors_MVC.Controllers
         // GET: Home
         string BaseUrlEvents = "http://193.10.202.77"; // Eventgruppens IP-adress
         string BaseUrlPlaces = "http://193.10.202.78"; // /EventLokal/api/Places/1
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string selectedCategory)
         {
             List<EventsClass> EventsList = new List<EventsClass>();
             using (var ApiClient = new HttpClient())
@@ -36,13 +36,44 @@ namespace EventVisitors_MVC.Controllers
                     };
 
                     var Response = Res.Content.ReadAsStringAsync().Result;
-                    EventsList = JsonConvert.DeserializeObject<List<EventsClass>>(Response, settings);
+                    //EventsList = JsonConvert.DeserializeObject<List<EventsClass>>(Response, settings); Varför funkar denna inte längre?
                 }
+
+                foreach(var item in EventsList)
+                {
+                    DateTime oDate = Convert.ToDateTime(item.Event_End_Datetime);
+                    DateTime date1 = DateTime.Now;
+                    DateTime date2 = oDate;
+                    int result = DateTime.Compare(date1, date2);
+
+                    if ( result > 0)
+                    {
+                      EventsList.Remove(item);
+                    }
+
+}
 
                 Session["ArrangerId"] = EventsList.Select(m => m.Event_Arranger_Id);
 
+                var kategori = from s in EventsList select s;
+               
+                switch (selectedCategory)
+                {
+                    case "Musikparty":
+                        kategori = kategori.Where(s => s.Event_Name.Contains(selectedCategory));
+                        break;
+                    case "Musik":
+                        kategori = kategori.Where(s => s.Event_Category.Contains(selectedCategory));
+                        break;
+                    case "Klädbytardag":
+                        kategori = kategori.Where(s => s.Event_Category.Contains(selectedCategory));
+                        break;
+                    default:
+                        kategori = kategori.OrderBy(s => s.Event_Arranger_Id);
+                        break;
+                }
 
-               return View(EventsList);
+                return View(kategori.ToList());
 
                 // ToDo:
                 // Kontrollera om eventet är aktivt eller inte

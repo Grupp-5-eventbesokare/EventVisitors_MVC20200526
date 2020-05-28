@@ -9,65 +9,96 @@
         <input class="form-control mr-sm-2 sokruta" type="search" placeholder="Sök event...." aria-label="Search">
         <button class="btn searchButton my-2 my-sm-0 sokknapp" type="submit">Sök</button>
     </form>
+
 </div>
 
 <div class="row">
+    <!--<table class="table"> se om knaparna funkar först innan tar bort
+        <tr>
+            <th>
+                Html.ActionLink("Musikparty", "Index", new { selectedCategory = "Musikparty" })
+            </th>
+            <th>
+                Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" })
+            </th>
+            <th>
+                Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" })
+            </th>
+            <th></th>
+        </tr>
+    </table>-->
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" onclik="window.location.href(@Url.Action("Event Namn", "Index", new { selectedCategory = "Musikparty" }))"> Musikparty
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off" onclik="window.location.href(@Url.Action("Event Namn", "Index", new { selectedCategory = "Musik" }))"> Musik
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off" onclik="window.location.href(@Url.Action("Event Namn", "Index", new { selectedCategory = "Klädbytardag" }))"> Klädbytardag
+        </label>
+    </div>
+
     @foreach (var item in Model)
     {
-            <div class="containerr col-md-3">
-                <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" /> <!-- ~/Image/Images_Events/Exhibition.jpg -->
-                <br />
-                <div class="card-body d-flex flex-column">
-                    <p>
+        <div class="containerr col-md-3">
+            <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" /> <!-- ~/Image/Images_Events/Exhibition.jpg -->
+            <br />
+            <div class="card-body d-flex flex-column">
+                <p>
+                    @Html.DisplayFor(modelItem => item.Event_Category)
+                </p>
+                <p>
                     @Html.DisplayFor(modelItem => item.Event_Name)
-                    </p>
-                    <p>
+                </p>
+                <p>
                     @Html.DisplayFor(modelItem => item.Event_Imagelink)
-                    </p>
-                    <p>
+                </p>
+                <p>
                     Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
-                    </p>
-                    <p>
+                </p>
+                <p>
                     Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
-                    </p>
-                     <p>
+                </p>
+                <p>
                     Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
-                    </p>
-                    <p>
+                </p>
+                <p>
                     Arrangör: Namn på arrangör
-                    </p>
-                </div>
-                <div class="overlay">
-                    <p class="text">
+                </p>
+            </div>
+            <div class="overlay">
+                <p class="text">
                     @Html.DisplayFor(modelItem => item.Event_Description)
                     <br />
                     Plats:
-                    </p>
-                    <div class="knappOverlay1">
-                            <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
-                        <br />
-                         @if (item.Event_Seeking_Volunteers == true)
-                          {
-                            <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
-                          }
-                    </div>
-
-                    <!-- OM VI SKA HA DROPPDOWN
-                    <div class="knappOverlay1">
-                    <div class="btn-group">
-                        <button type="button" class="btn knapp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Anmälan
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-left">
-                            <button class="dropdown-item" type="button" id="SaveEvent">Spara Event</button>
-                            if (item.Event_Active == true)
-                            {
-                                <button class="dropdown-item" type="button" id="BeVolonteer">Bli Volontär</button>
-                            }
-                        </div>
-                        </div>
-                    </div>-->
+                </p>
+                <div class="knappOverlay1">
+                    <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
+                    <br />
+                    @if (item.Event_Seeking_Volunteers == true)
+                    {
+                        <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
+                    }
                 </div>
+
+                <!-- OM VI SKA HA DROPPDOWN
+                <div class="knappOverlay1">
+                <div class="btn-group">
+                    <button type="button" class="btn knapp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Anmälan
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <button class="dropdown-item" type="button" id="SaveEvent">Spara Event</button>
+                        if (item.Event_Active == true)
+                        {
+                            <button class="dropdown-item" type="button" id="BeVolonteer">Bli Volontär</button>
+                        }
+                    </div>
+                    </div>
+                </div>-->
             </div>
-     }
+        </div>
+    }
 </div>
