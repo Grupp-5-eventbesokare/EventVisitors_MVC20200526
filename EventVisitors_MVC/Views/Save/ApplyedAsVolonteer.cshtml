@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
 
-<h4>Sparade Event</h4>
+<h4>Volontärs anmälningar</h4>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -24,6 +24,8 @@
             <th scope="col">Ta bort sparad event <!--Ska finnas något med bokningsgruppens api funktion --></th>
         </tr>
     </thead>
+    <!--Visa aktiva event som man har anmält som volontär-->
+
     @foreach (var item in Model)
     {
         if (item.Event_Active == true)
@@ -69,10 +71,11 @@
         }
 
     }
+
 </table>
 
-<br />
-<br />
+<br/>
+<br/>
 
 <!--OM vi ska visa detta.. (Har ej kunnat testa-->
 
@@ -146,4 +149,3 @@
     }
 
 </table>
-

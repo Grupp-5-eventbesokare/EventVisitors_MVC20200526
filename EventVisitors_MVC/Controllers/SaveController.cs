@@ -14,7 +14,13 @@ namespace EventVisitors_MVC.Controllers
         //Gjorde vyn utifrån EventsClass, vet inte om vi ska ha en annan klass eller det är det som skall vara?
 
 
+        //Index för Sparade Event
         public ActionResult Index()
+        {
+
+            return View();
+        }
+        public ActionResult ApplyedAsVolonteer()
         {
 
             return View();
