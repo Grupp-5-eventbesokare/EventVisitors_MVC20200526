@@ -4,9 +4,11 @@
     ViewBag.Title = "Startsida";
 }
 
-
+@Session["Namn"]
 <div class="row">
-    <table class="table">
+    <br />
+    <p>Filtrering:</p>
+    <table class="table" style="border: none;">
         <tr>
             <!--Denna skall vara sist eller först?!-->
             <th>
@@ -39,6 +41,8 @@
             <th>
                 @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
+        </tr>
+        <tr>
             <th>
                 @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
@@ -51,9 +55,6 @@
             <th>
                 @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
-
-        </tr>
-        <tr>
             <th>
                 @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
@@ -79,12 +80,9 @@
     @foreach (var item in Model)
     {
         <div class="containerr col-md-3">
-            <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" /> <!-- ~/Image/Images_Events/Exhibition.jpg -->
+            <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" />
             <br />
             <div class="card-body d-flex flex-column">
-                <p>
-                    @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
-                </p>
                 <p>
                     @Html.DisplayFor(modelItem => item.Event_Name)
                 </p>
@@ -99,6 +97,9 @@
                 </p>
                 <p>
                     Arrangör: Namn på arrangör
+                </p>
+                <p>
+                    Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
                 </p>
             </div>
             <div class="overlay">
