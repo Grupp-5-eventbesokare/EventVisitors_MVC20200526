@@ -4,41 +4,77 @@
     ViewBag.Title = "Startsida";
 }
 
-<div class="sok text-center jumbotron">
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 sokruta" type="search" placeholder="Sök event...." aria-label="Search">
-        <button class="btn searchButton my-2 my-sm-0 sokknapp" type="submit">Sök</button>
-    </form>
-
-</div>
 
 <div class="row">
-    <!--<table class="table"> se om knaparna funkar först innan tar bort
+    <table class="table">
+        <tr>
+            <!--Denna skall vara sist eller först?!-->
+            <th>
+                @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Bingo", "Index", new { selectedCategory = "Bingo" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Festival", "Index", new { selectedCategory = "Festival" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Loppis", "Index", new { selectedCategory = "Loppis" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Övrigt", "Index", new { selectedCategory = "Övrigt" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Högtid", "Index", new { selectedCategory = "Högtid" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Kultur", "Index", new { selectedCategory = "Kultur" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Utställning", "Index", new { selectedCategory = "Utställning" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Motion", "Index", new { selectedCategory = "Motion" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+
+        </tr>
         <tr>
             <th>
-                Html.ActionLink("Musikparty", "Index", new { selectedCategory = "Musikparty" })
+                @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
             <th>
-                Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" })
+                @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
             <th>
-                Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" })
+                @Html.ActionLink("Marknad", "Index", new { selectedCategory = "Marknad" }, new { @class = "btn btn-primary", @style = "color:white" })
             </th>
-            <th></th>
+            <th>
+                @Html.ActionLink("Konsert", "Index", new { selectedCategory = "Konsert" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Ospecificerad", "Index", new { selectedCategory = "Ospecificerad" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
+            <th>
+                @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn btn-primary", @style = "color:white" })
+            </th>
         </tr>
-    </table>-->
+    </table>
 
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-            <input type="radio" name="options" id="option1" autocomplete="off" onclik="window.location.href(@Url.Action("Event Namn", "Index", new { selectedCategory = "Musikparty" }))"> Musikparty
-        </label>
-        <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option2" autocomplete="off" onclik="window.location.href(@Url.Action("Event Namn", "Index", new { selectedCategory = "Musik" }))"> Musik
-        </label>
-        <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option3" autocomplete="off" onclik="window.location.href(@Url.Action("Event Namn", "Index", new { selectedCategory = "Klädbytardag" }))"> Klädbytardag
-        </label>
-    </div>
 
     @foreach (var item in Model)
     {
@@ -47,14 +83,14 @@
             <br />
             <div class="card-body d-flex flex-column">
                 <p>
-                    @Html.DisplayFor(modelItem => item.Event_Category)
+                    @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
                 </p>
                 <p>
                     @Html.DisplayFor(modelItem => item.Event_Name)
                 </p>
-                <p>
+                @*<p>
                     @Html.DisplayFor(modelItem => item.Event_Imagelink)
-                </p>
+                </p>*@
                 <p>
                     Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
                 </p>

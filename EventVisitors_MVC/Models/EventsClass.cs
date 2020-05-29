@@ -19,8 +19,6 @@ namespace EventVisitors_MVC.Models
 
         public int Event_Location_Id { get; set; }
 
-        public string Event_Category { get; set; }
-
         public string Event_Description { get; set; }
 
         public string Event_Imagelink { get; set; }
@@ -32,6 +30,14 @@ namespace EventVisitors_MVC.Models
         public string Event_End_Datetime { get; set; }
 
         public string Event_Create_Datetime { get; set; }
+
+        public Event_Category Event_Category { get; set; }
+    }
+    public class Event_Category
+    {
+        public int Category_Id { get; set; }
+
+        public string Category_Name { get; set; }
 
     }
 }

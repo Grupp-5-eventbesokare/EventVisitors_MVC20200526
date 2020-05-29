@@ -36,22 +36,22 @@ namespace EventVisitors_MVC.Controllers
                     };
 
                     var Response = Res.Content.ReadAsStringAsync().Result;
-                    //EventsList = JsonConvert.DeserializeObject<List<EventsClass>>(Response, settings); Varför funkar denna inte längre?
+                    EventsList = JsonConvert.DeserializeObject<List<EventsClass>>(Response, settings);
                 }
 
-                foreach(var item in EventsList)
+                foreach (var item in EventsList.ToList())
                 {
-                    DateTime oDate = Convert.ToDateTime(item.Event_End_Datetime);
+                    DateTime odate = Convert.ToDateTime(item.Event_End_Datetime);
                     DateTime date1 = DateTime.Now;
-                    DateTime date2 = oDate;
+                    DateTime date2 = odate;
                     int result = DateTime.Compare(date1, date2);
 
-                    if ( result > 0)
+                    if (result > 0)
                     {
-                      EventsList.Remove(item);
+                        EventsList.Remove(item);
                     }
 
-}
+                }
 
                 Session["ArrangerId"] = EventsList.Select(m => m.Event_Arranger_Id);
 
@@ -59,14 +59,62 @@ namespace EventVisitors_MVC.Controllers
                
                 switch (selectedCategory)
                 {
-                    case "Musikparty":
-                        kategori = kategori.Where(s => s.Event_Name.Contains(selectedCategory));
-                        break;
                     case "Musik":
-                        kategori = kategori.Where(s => s.Event_Category.Contains(selectedCategory));
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Bingo":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Festival":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Loppis":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
                         break;
                     case "Klädbytardag":
-                        kategori = kategori.Where(s => s.Event_Category.Contains(selectedCategory));
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Övrigt":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Högtid":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Kultur":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Utbildning":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Tävling":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Utställning":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Motion":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Film":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Barn & Familj":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Marknad":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Konsert":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Ospecificerad":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "Sport":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
+                        break;
+                    case "":
+                        kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
                         break;
                     default:
                         kategori = kategori.OrderBy(s => s.Event_Arranger_Id);
