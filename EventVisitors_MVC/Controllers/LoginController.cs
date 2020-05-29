@@ -27,29 +27,34 @@ namespace EventVisitors_MVC.Controllers
 
         //Skickar värderna som användaren skriver in
         [HttpPost] 
-        public ActionResult LoginUser(ProfilesClass inlogg)
+        public ActionResult LoginUser(LoginClass inlogg)
         {
+            LoginClass inloggBes;
             using (var client = new HttpClient())
             {
-                ProfilesClass login = new ProfilesClass { Profile_Email = inlogg.Profile_Email, Profile_Password = inlogg.Profile_Password };
+                LoginClass login = new LoginClass { Email = inlogg.Email, Password = inlogg.Password };
                 client.BaseAddress = new Uri("http://193.10.202.76/api/");
 
                 //HTTP POST
-                var postTask = client.PostAsJsonAsync("visitorlogin", login).Id;
+                var postTask = client.PostAsJsonAsync("visitorlogin", login).Result;
                 //postTask.Wait();
                 //var result = postTask.Result;
-                inlogg.Profile_User_Id = postTask;
-                ProfilesClass b = new ProfilesClass{ Profile_User_Id=inlogg.Profile_User_Id};
-                checkUser(b);
+                //inlogg.Profile_User_Id = postTask;
+                //ProfilesClass b = new ProfilesClass{ Profile_User_Id=inlogg.Profile_User_Id};
+                //checkUser(b);
 
-                if (postTask == inlogg.Profile_User_Id)
+                if (postTask.IsSuccessStatusCode)
                 {
-                    Session["Namn"] = inlogg.Profile_Firstname;
-                    return RedirectToAction("Index", "Home");
+                    var BesResponse = postTask.Content.ReadAsStringAsync().Result;
+
+                    inloggBes = JsonConvert.DeserializeObject<LoginClass>(BesResponse);
+
+                    Session["Namn"] = inlogg.Email;
+                    return RedirectToAction("Index","Home");
                 }
                 ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                return View(inlogg);
+                return View();
             }
 
         }
