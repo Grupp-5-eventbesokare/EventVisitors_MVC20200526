@@ -45,8 +45,9 @@ namespace EventVisitors_MVC.Controllers
                 if (postTask != 0)
                 {
                     registration.Profile_User_Id = postTask;
-                    //SaveProfile k =new SaveProfile; //Kalla på metoden
-                    ProfilesClass b = new ProfilesClass { Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_PhoneNr =registration.Profile_PhoneNr, Profile_Birthday = registration.Profile_Birthday, Profile_Role =registration.Profile_Role };
+                    //SaveProfile k = new SaveProfile; //Kalla på metoden
+                    ProfilesClass b = new ProfilesClass { Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_PhoneNr =registration.Profile_PhoneNr, Profile_Birthday = registration.Profile_Birthday, Profile_Role =registration.Profile_Role, Profile_User_Id=registration.Profile_User_Id};
+                    SaveProfile(b);
                     return RedirectToAction("LoginUser", "Login");
                 }
                 //ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
@@ -59,9 +60,8 @@ namespace EventVisitors_MVC.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("vår egna url");
-                var postTask = client.PostAsJsonAsync("PostProfile", newProfile);
-                // postTask.Wait();
+                client.BaseAddress = new Uri("http://localhost:19779/api/");
+                var postTask = client.PostAsJsonAsync("MyProfile", newProfile);
 
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
