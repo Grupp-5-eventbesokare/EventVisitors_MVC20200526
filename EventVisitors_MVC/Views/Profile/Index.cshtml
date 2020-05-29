@@ -13,6 +13,7 @@
                         <img src="~/Image/Image_Profiles/Anonym.png" class="img-rounded img-responsive image" />
                     </div>
                     <div class="col-sm-6 col-md-8">
+                        @Session["Namn"]
                         <h4>
                             @Html.DisplayFor(modelItem => modelItem.Profile_Firstname) @Html.DisplayFor(modelItem => modelItem.Profile_Lastname)
                         </h4>

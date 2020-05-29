@@ -1,10 +1,11 @@
-﻿@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
+@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
 
 @{
     ViewBag.Title = "Startsida";
 }
-
-    <div class="jumbotron">
+@Session["Namn"]
+   
+       <div class="jumbotron">
         <p>Filtrering av Event</p>
 
         @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
@@ -48,33 +49,49 @@
 
         @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn btn-primary", @style = "color:white" })
     </div>
+<div class="row">
 
-    <div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="containerr col-md-3">
+            <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" />
+            <br />
+            <div class="card-body d-flex flex-column">
+                <p>
+                    @Html.DisplayFor(modelItem => item.Event_Name)
+                </p>
+                <p>
+                    Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
+                </p>
+                <p>
+                    Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
+                </p>
+                <p>
+                    Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
+                </p>
+                <p>
+                    Arrangör: Namn på arrangör
+                </p>
+                <p>
+                    Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
+                </p>
+            </div>
+            <div class="overlay">
+                <p class="text">
+                    @Html.DisplayFor(modelItem => item.Event_Description)
+                    <br />
+                    Plats:
+                </p>
+                <div class="knappOverlay1">
+                    <form action="~/Save/" method="post">
+                        <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
+                    </form>
+                    <br />
+                    @if (item.Event_Seeking_Volunteers == true)
+                    {
+                        <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
+                    }
 
-        @foreach (var item in Model)
-        {
-            <div class="containerr col-md-3">
-                <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" /> <!-- ~/Image/Images_Events/Exhibition.jpg -->
-                <br />
-                <div class="card-body d-flex flex-column">
-                    <p>
-                        @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
-                    </p>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.Event_Name)
-                    </p>
-                    <p>
-                        Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
-                    </p>
-                    <p>
-                        Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
-                    </p>
-                    <p>
-                        Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
-                    </p>
-                    <p>
-                        Arrangör: Namn på arrangör
-                    </p>
                 </div>
                 <div class="overlay">
                     <p class="text">
