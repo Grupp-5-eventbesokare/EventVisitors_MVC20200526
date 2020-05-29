@@ -59,8 +59,8 @@ namespace EventVisitors_MVC.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("vår egna url");
-                var postTask = client.PostAsJsonAsync("PostProfile", newProfile);
+                client.BaseAddress = new Uri("http://localhost:19779/");
+                var postTask = client.PostAsJsonAsync("api/MyProfile", newProfile);
                 // postTask.Wait();
 
                 var result = postTask.Result;
