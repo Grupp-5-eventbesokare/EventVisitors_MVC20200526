@@ -1,81 +1,55 @@
-﻿@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
+@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
 
 @{
     ViewBag.Title = "Startsida";
 }
-
 @Session["Namn"]
-<div class="row">
-    <br />
-    <p>Filtrering:</p>
-    <table class="table" style="border: none;">
-        <tr>
-            <!--Denna skall vara sist eller först?!-->
-            <th>
-                @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Bingo", "Index", new { selectedCategory = "Bingo" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Festival", "Index", new { selectedCategory = "Festival" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Loppis", "Index", new { selectedCategory = "Loppis" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Övrigt", "Index", new { selectedCategory = "Övrigt" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Högtid", "Index", new { selectedCategory = "Högtid" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Kultur", "Index", new { selectedCategory = "Kultur" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Utställning", "Index", new { selectedCategory = "Utställning" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Motion", "Index", new { selectedCategory = "Motion" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Marknad", "Index", new { selectedCategory = "Marknad" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Konsert", "Index", new { selectedCategory = "Konsert" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Ospecificerad", "Index", new { selectedCategory = "Ospecificerad" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-            <th>
-                @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn btn-primary", @style = "color:white" })
-            </th>
-        </tr>
-    </table>
+   
+       <div class="jumbotron">
+        <p>Filtrering av Event</p>
 
+        @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Bingo", "Index", new { selectedCategory = "Bingo" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Festival", "Index", new { selectedCategory = "Festival" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Loppis", "Index", new { selectedCategory = "Loppis" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Övrigt", "Index", new { selectedCategory = "Övrigt" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Högtid", "Index", new { selectedCategory = "Högtid" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Kultur", "Index", new { selectedCategory = "Kultur" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn btn-primary", @style = "color:white" })
+        <br/>
+        <br/>
+        @Html.ActionLink("Utställning", "Index", new { selectedCategory = "Utställning" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Motion", "Index", new { selectedCategory = "Motion" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Marknad", "Index", new { selectedCategory = "Marknad" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Konsert", "Index", new { selectedCategory = "Konsert" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Ospecificerad", "Index", new { selectedCategory = "Ospecificerad" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn btn-primary", @style = "color:white" })
+    </div>
+<div class="row">
 
     @foreach (var item in Model)
     {
@@ -117,9 +91,26 @@
                     {
                         <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
                     }
-                </div>
 
-                <!-- OM VI SKA HA DROPPDOWN
+                </div>
+                <div class="overlay">
+                    <p class="text">
+                        @Html.DisplayFor(modelItem => item.Event_Description)
+                        <br />
+                        Plats:
+                    </p>
+                    <div class="knappOverlay1">
+                        <form action="~/Save/" method="post">
+                            <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
+                        </form>
+                        <br />
+                        @if (item.Event_Seeking_Volunteers == true)
+                        {
+                            <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
+                        }
+                    </div>
+
+                    <!-- OM VI SKA HA DROPPDOWN
                 <div class="knappOverlay1">
                 <div class="btn-group">
                     <button type="button" class="btn knapp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -134,7 +125,7 @@
                     </div>
                     </div>
                 </div>-->
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>

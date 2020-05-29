@@ -152,6 +152,7 @@
     <Content Include="Image\Images_Events\Other.jpg" />
     <Content Include="Image\Images_Events\Outdoor.jpg" />
     <Content Include="Image\Image_Profiles\Anonym.png" />
+    <Content Include="Image\Namnlös.png" />
     <Content Include="Image\sokBild.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

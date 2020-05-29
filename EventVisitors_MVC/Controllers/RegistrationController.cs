@@ -59,7 +59,7 @@ namespace EventVisitors_MVC.Controllers
         private void SaveProfile(ProfilesClass newProfile)
         {
             using (var client = new HttpClient())
-            {
+
                 client.BaseAddress = new Uri("http://localhost:19779/api/");
                 var postTask = client.PostAsJsonAsync("MyProfile", newProfile);
 
