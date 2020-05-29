@@ -18,7 +18,7 @@ namespace EventVisitors_MVC.Controllers
         public ActionResult Index()
         {
 
-                return View();
+            return View();
         }
 
         public ActionResult RegistrationUser()
@@ -28,28 +28,48 @@ namespace EventVisitors_MVC.Controllers
         }
 
         [HttpPost] //Skickar värderna som användaren skriver in
-        public ActionResult RegistrationUser(RegistrationClass registration)
+        public ActionResult RegistrationUser(ProfilesClass registration)
         {
-            registration.Registration_Role = "Besökare"; // Besökare blir standardroll för alla som registrerar sig
+            registration.Profile_Role = "Besökare"; // Besökare blir standardroll för alla som registrerar sig
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://193.10.202.76/api/visitor");
+                ProfilesClass p = new ProfilesClass{ Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_Password=registration.Profile_Password, Profile_Role =registration.Profile_Role};
+                client.BaseAddress = new Uri("http://193.10.202.76/api/");
 
                 //HTTP POST
-                var postTask = client.PostAsJsonAsync("/PostVisitor", registration); // Kolla med grupp1 att det är rätt metod
-                postTask.Wait();
+                var postTask = client.PostAsJsonAsync("visitor", registration).Id;//.Id;  Kolla med grupp1 att det är rätt metod
+
+                //postTask.Wait();
+                //var result = postTask.Result; // 
+
+                if (postTask != 0)
+                {
+                    registration.Profile_User_Id = postTask;
+                    //SaveProfile k =new SaveProfile; //Kalla på metoden
+                    ProfilesClass b = new ProfilesClass { Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_PhoneNr =registration.Profile_PhoneNr, Profile_Birthday = registration.Profile_Birthday, Profile_Role =registration.Profile_Role };
+                    return RedirectToAction("LoginUser", "Login");
+                }
+                //ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                return View(registration);
+            }
+        }
+
+        private void SaveProfile(ProfilesClass newProfile)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("vår egna url");
+                var postTask = client.PostAsJsonAsync("PostProfile", newProfile);
+                // postTask.Wait();
 
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("LoginUser", "Login");
+                    Console.WriteLine("Profilen har sparats i db");
                 }
                 ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-                return View(registration);
             }
-
-            
         }
     }
 }

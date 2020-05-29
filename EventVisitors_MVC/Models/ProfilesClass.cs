@@ -13,13 +13,13 @@ namespace EventVisitors_MVC.Models
 
         public string Profile_Lastname { get; set; }
 
-        //public DateTime Profile_Birthday { get; set; }
+        public DateTime Profile_Birthday { get; set; }
 
-        //public string Profile_PhoneNr { get; set; }
+        public string Profile_PhoneNr { get; set; }
 
         public string Profile_Email { get; set; }
 
-        //public string Profile_Password { get; set; }
+        public string Profile_Password { get; set; }
 
         public string Profile_Image { get; set; }
 
