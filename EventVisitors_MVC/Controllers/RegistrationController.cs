@@ -28,26 +28,27 @@ namespace EventVisitors_MVC.Controllers
         }
 
         [HttpPost] //Skickar värderna som användaren skriver in
-        public ActionResult RegistrationUser(ProfilesClass registration)
+        public ActionResult RegistrationUser(RegistrationClass registration)
         {
-            registration.Profile_Role = "Besökare"; // Besökare blir standardroll för alla som registrerar sig
+            registration.Registration_Role = "Besökare"; // Besökare blir standardroll för alla som registrerar sig
             using (var client = new HttpClient())
             {
-                ProfilesClass p = new ProfilesClass{ Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_Password=registration.Profile_Password, Profile_Role =registration.Profile_Role};
-                client.BaseAddress = new Uri("http://193.10.202.76/api/");
+                //ProfilesClass skickaRegistration = new ProfilesClass{ Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_Password=registration.Profile_Password, Profile_Role =registration.Profile_Role};
+                // RegistrationClass skickaRegistration = new RegistrationClass { Registration_Firstname = fn, Registration_Lastname = ln, Registration_Email = e, Registration_Password = p, Registration_Role = b };
+                    client.BaseAddress = new Uri("http://193.10.202.76/api/");
 
                 //HTTP POST
-                var postTask = client.PostAsJsonAsync("visitor", registration).Id;//.Id;  Kolla med grupp1 att det är rätt metod
+                var response = client.PostAsJsonAsync("visitor", registration).Result;//.Id;  Kolla med grupp1 att det är rätt metod
 
-                //postTask.Wait();
-                //var result = postTask.Result; // 
-
-                if (postTask != 0)
+                if (response.IsSuccessStatusCode)
                 {
-                    registration.Profile_User_Id = postTask;
+                   string id = response.Content.ReadAsStringAsync().Result; //Från Jan-olof
+                   int test = Int32.Parse(id);
+
                     //SaveProfile k = new SaveProfile; //Kalla på metoden
-                    ProfilesClass b = new ProfilesClass { Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_PhoneNr =registration.Profile_PhoneNr, Profile_Birthday = registration.Profile_Birthday, Profile_Role =registration.Profile_Role, Profile_User_Id=registration.Profile_User_Id};
-                    SaveProfile(b);
+
+                    //ProfilesClass be = new ProfilesClass { Profile_Email = registration.Profile_Email, Profile_Firstname = registration.Profile_Firstname, Profile_Lastname = registration.Profile_Lastname, Profile_PhoneNr =registration.Profile_PhoneNr, Profile_Birthday = registration.Profile_Birthday, Profile_Role =registration.Profile_Role, Profile_User_Id=registration.Profile_User_Id};
+                    //SaveProfile(test);
                     return RedirectToAction("LoginUser", "Login");
                 }
                 //ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
@@ -59,7 +60,7 @@ namespace EventVisitors_MVC.Controllers
         private void SaveProfile(ProfilesClass newProfile)
         {
             using (var client = new HttpClient())
-
+            { 
                 client.BaseAddress = new Uri("http://localhost:19779/api/");
                 var postTask = client.PostAsJsonAsync("MyProfile", newProfile);
 

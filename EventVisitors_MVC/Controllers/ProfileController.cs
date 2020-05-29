@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EventVisitors_MVC.Controllers
 {
-    /* [Authorize] */ // Då denna controller endast ska vara tillgänglig om man är inloggad är åtkomsträttigheten "Authorize"
+   /* [Authorize]*/ // Då denna controller endast ska vara tillgänglig om man är inloggad är åtkomsträttigheten "Authorize"
 
     public class ProfileController : Controller
     {
@@ -29,6 +29,11 @@ namespace EventVisitors_MVC.Controllers
 
                 if (Res.IsSuccessStatusCode)
                 {
+                    var settings = new JsonSerializerSettings // Detta fungerar för att ignorera Null-värden
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
                     var Response = Res.Content.ReadAsStringAsync().Result;
                     Profile = JsonConvert.DeserializeObject<ProfilesClass>(Response);
 
