@@ -100,13 +100,22 @@
                         Plats:
                     </p>
                     <div class="knappOverlay1">
-                        <form action="~/Save/" method="post">
-                            <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
-                        </form>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.Hidden("eventId", item.Event_id)
+                            <div><input type="submit" value="Anmäll dig som besökare" /><br /></div>
+                            <div>@Html.ValidationSummary()</div>
+                        }
                         <br />
                         @if (item.Event_Seeking_Volunteers == true)
                         {
-                            <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
+                            using (Html.BeginForm())
+                            {
+                                @Html.Hidden("eventId", item.Event_id, "Volonter")
+                                <div><input type="submit" value="Anmäll dig som volontär" /><br /></div>
+                                <div>@Html.ValidationSummary()</div>
+                            }
                         }
                     </div>
 
@@ -126,6 +135,7 @@
                     </div>
                 </div>-->
                 </div>
+            </div>
             </div>
         }
     </div>
