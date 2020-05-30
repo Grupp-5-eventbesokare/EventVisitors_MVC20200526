@@ -17,10 +17,15 @@ namespace EventVisitors_MVC.Controllers
         // GET: Home
         string BaseUrlEvents = "http://193.10.202.77"; // Eventgruppens IP-adress
         string BaseUrlPlaces = "http://193.10.202.78"; // /EventLokal/api/Places/1
+        
         public async Task<ActionResult> Index(string selectedCategory)
         {
             List<EventsClass> EventsList = new List<EventsClass>();
-            using (var ApiClient = new HttpClient())
+            //if (Session[Anvandare] != null)
+            //{
+            //    Anvandare aktuelanvandarefransession = (Anvandare)Session["Anvandare"]
+            //}
+                using (var ApiClient = new HttpClient())
             {
                ApiClient.BaseAddress = new Uri(BaseUrlEvents);
                ApiClient.DefaultRequestHeaders.Clear();
@@ -161,6 +166,60 @@ namespace EventVisitors_MVC.Controllers
                 {
                     return View();
                 }
+            }
+        }
+
+        public ActionResult Anmalan (int Event_Id, int Profile_Id)
+        {
+            {
+                using (var client = new HttpClient())
+                {
+                    
+                    client.BaseAddress = new Uri("http://193.10.202.77");
+                    var response = client.PostAsJsonAsync("/api/Bookings/" + Event_Id, Profile_Id ).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.Write("Success");
+                        return View();
+                    }
+                    else
+                        Console.Write("Error");
+                    return View();
+
+                }
+
+            }
+        }
+
+        public ActionResult VolonterAnmalan(int Event_Id, int Profile_Id, string Volonter)
+        {
+            {
+
+                using (var client = new HttpClient())
+                {
+                    var User_Type = "Volonteer";
+                    client.BaseAddress = new Uri("http://193.10.202.77");
+                    var response = client.PostAsJsonAsync("/api/Bookings/Event/" + Event_Id + "/Volounteer", Profile_Id).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.Write("Success");
+                      
+                    }
+                    else
+                        Console.Write("Error");
+                   
+                    var response2 = client.PostAsJsonAsync(" / api / Bookings / Event / " + Event_Id + " / Volounteer", User_Type).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.Write("Success");
+                        return View();
+                    }
+                    else
+                        Console.Write("Error");
+                    return View();
+
+                }
+
             }
         }
 
