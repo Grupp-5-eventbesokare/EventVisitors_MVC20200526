@@ -17,9 +17,9 @@ namespace EventVisitors_MVC.Models
 
         public string Profile_PhoneNr { get; set; }
 
-        public string Email { get; set; }
+        public string Profile_Email { get; set; }
 
-        //public string Profile_Password { get; set; }
+        public string Profile_Password { get; set; }
 
         public string Profile_Image { get; set; }
 
