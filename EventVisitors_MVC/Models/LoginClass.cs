@@ -6,6 +6,7 @@ using System.Web;
 namespace EventVisitors_MVC.Models
 {
     public class LoginClass
+
     {       
         public int id { get; set; }
         public string Email { get; set; }

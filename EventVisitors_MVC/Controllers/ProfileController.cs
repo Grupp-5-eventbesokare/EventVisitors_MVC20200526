@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace EventVisitors_MVC.Controllers
 {
-     [Authorize] // Då denna controller endast ska vara tillgänglig om man är inloggad är åtkomsträttigheten "Authorize"
 
     public class ProfileController : Controller
     {

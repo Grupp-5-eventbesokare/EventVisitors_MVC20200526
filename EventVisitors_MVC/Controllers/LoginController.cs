@@ -29,6 +29,7 @@ namespace EventVisitors_MVC.Controllers
         }
 
 
+
         [HttpPost]
         public ActionResult LoginUser(LoginClass login)
         {
@@ -81,6 +82,33 @@ namespace EventVisitors_MVC.Controllers
                 }
                 else
                     return false; //Om  svaret inte är IsSuccessStatusCode så kan vi inte godkänna inloggningen
+
+        //Skickar värderna som användaren skriver in
+        [HttpPost] 
+        public ActionResult LoginUser(LoginClass inlogg)
+        {
+            LoginClass inloggBes;
+            using (var client = new HttpClient())
+            {
+                LoginClass login = new LoginClass { Email = inlogg.Email, Password = inlogg.Password };
+                client.BaseAddress = new Uri("http://193.10.202.76/api/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync("visitorlogin", login).Result;
+
+                if (postTask.IsSuccessStatusCode)
+                {
+                    var BesResponse = postTask.Content.ReadAsStringAsync().Result;
+
+                    inloggBes = JsonConvert.DeserializeObject<LoginClass>(BesResponse);
+
+                    Session["Namn"] = inlogg.Email;
+                    return RedirectToAction("Index","Home");
+                }
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+                return View();
+
             }
         }
 

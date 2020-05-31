@@ -123,12 +123,61 @@
                         <button class="dropdown-item" type="button" id="BeVolonteer">Bli Volontär</button>
                     }
                 </div>
+
+                <div class="overlay">
+                    <p class="text">
+                        @Html.DisplayFor(modelItem => item.Event_Description)
+                        <br />
+                        Plats:
+                    </p>
+                    <div class="knappOverlay1">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.Hidden("eventId", item.Event_id)
+                            <div><input type="submit" value="Anmäll dig som besökare" /><br /></div>
+                            <div>@Html.ValidationSummary()</div>
+                        }
+                        <br />
+                        @if (item.Event_Seeking_Volunteers == true)
+                        {
+                            using (Html.BeginForm())
+                            {
+                                @Html.Hidden("eventId", item.Event_id, "Volonter")
+                                <div><input type="submit" value="Anmäll dig som volontär" /><br /></div>
+                                <div>@Html.ValidationSummary()</div>
+                            }
+                        }
+                    </div>
+
+                    <!-- OM VI SKA HA DROPPDOWN
+                <div class="knappOverlay1">
+                <div class="btn-group">
+                    <button type="button" class="btn knapp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Anmälan
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <button class="dropdown-item" type="button" id="SaveEvent">Spara Event</button>
+                        if (item.Event_Active == true)
+                        {
+                            <button class="dropdown-item" type="button" id="BeVolonteer">Bli Volontär</button>
+                        }
+                    </div>
+                    </div>
+                </div>-->
+
                 </div>
             </div>-->
             </div>
+
         </div>
     </div>
         }
     
     </div>
-  
+
+            </div>
+        }
+    </div>
+}
+
