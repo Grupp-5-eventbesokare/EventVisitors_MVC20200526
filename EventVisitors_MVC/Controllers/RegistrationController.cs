@@ -27,7 +27,7 @@ namespace EventVisitors_MVC.Controllers
             return View();
         }
 
-        [HttpPost] //Skickar värderna som användaren skriver in
+               [HttpPost] //Skickar värderna som användaren skriver in
         public async Task<ActionResult> RegistrationUser(ProfilesClass registration)
         {
             // REGISTRERING FUNKAR!
@@ -67,7 +67,6 @@ namespace EventVisitors_MVC.Controllers
                 return View(registration);
             }
         }
-
         private void SaveProfile(ProfilesClass newProfile)
         {
             using (var client = new HttpClient())
@@ -85,6 +84,7 @@ namespace EventVisitors_MVC.Controllers
         }
     }
 }
+
 
 
 

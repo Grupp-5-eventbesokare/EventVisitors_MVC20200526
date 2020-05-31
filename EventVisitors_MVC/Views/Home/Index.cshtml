@@ -53,28 +53,45 @@
 
     @foreach (var item in Model)
     {
-        <div class="containerr col-md-3">
-            <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" />
-            <br />
-            <div class="card-body d-flex flex-column">
-                <p>
-                    @Html.DisplayFor(modelItem => item.Event_Name)
-                </p>
-                <p>
-                    Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
-                </p>
-                <p>
-                    Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
-                </p>
-                <p>
-                    Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
-                </p>
-                <p>
-                    Arrangör: Namn på arrangör
-                </p>
-                <p>
-                    Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
-                </p>
+    <div class="containerr col-md-3">
+        <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" />
+        <br />
+        <div class="card-body d-flex flex-column">
+            <p>
+                @Html.DisplayFor(modelItem => item.Event_Name)
+            </p>
+            <p>
+                Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
+            </p>
+            <p>
+                Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
+            </p>
+            <p>
+                Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
+            </p>
+            <p>
+                Arrangör: Namn på arrangör
+            </p>
+            <p>
+                Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
+            </p>
+        </div>
+        <div class="overlay">
+            <p class="text">
+                @Html.DisplayFor(modelItem => item.Event_Description)
+                <br />
+                Plats:
+            </p>
+            <div class="knappOverlay1">
+                <form action="~/Save/" method="post">
+                    <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
+                </form>
+                <br />
+                @if (item.Event_Seeking_Volunteers == true)
+                {
+                    <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
+                }
+
             </div>
             <div class="overlay">
                 <p class="text">
@@ -91,8 +108,22 @@
                     {
                         <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
                     }
-
                 </div>
+
+                <!-- OM VI SKA HA DROPPDOWN
+            <div class="knappOverlay1">
+            <div class="btn-group">
+                <button type="button" class="btn knapp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Anmälan
+                </button>
+                <div class="dropdown-menu dropdown-menu-left">
+                    <button class="dropdown-item" type="button" id="SaveEvent">Spara Event</button>
+                    if (item.Event_Active == true)
+                    {
+                        <button class="dropdown-item" type="button" id="BeVolonteer">Bli Volontär</button>
+                    }
+                </div>
+
                 <div class="overlay">
                     <p class="text">
                         @Html.DisplayFor(modelItem => item.Event_Description)
@@ -134,8 +165,19 @@
                     </div>
                     </div>
                 </div>-->
+
                 </div>
+            </div>-->
             </div>
+
+        </div>
+    </div>
+        }
+    
+    </div>
+
             </div>
         }
     </div>
+}
+
