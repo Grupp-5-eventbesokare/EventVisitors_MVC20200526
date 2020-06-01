@@ -196,9 +196,8 @@ namespace EventVisitors_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult VolonterAnmalan(EventsClass anmalan, ProfilesClass person)
+        public ActionResult VolonterAnmalan(int eventId, ProfilesClass person)
         {
-            int eventId = anmalan.Event_id;
             int personId = person.Profile_Id;
             {
 
