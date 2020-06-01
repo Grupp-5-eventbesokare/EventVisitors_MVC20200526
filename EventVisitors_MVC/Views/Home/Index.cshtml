@@ -76,23 +76,6 @@
                     Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
                 </p>
             </div>
-            <div class="overlay">
-                <p class="text">
-                    @Html.DisplayFor(modelItem => item.Event_Description)
-                    <br />
-                    Plats:
-                </p>
-                <div class="knappOverlay1">
-                    <form action="~/Save/" method="post">
-                        <button class="btn knapp" type="submit" value="Submit" id="SaveEvent">Spara Event</button>
-                    </form>
-                    <br />
-                    @if (item.Event_Seeking_Volunteers == true)
-                    {
-                        <button class="btn knapp" type="submit" value="Submit" id="BeVolonteer">Anmäl som Volontär</button>
-                    }
-
-                </div>
                 <div class="overlay">
                     <p class="text">
                         @Html.DisplayFor(modelItem => item.Event_Description)
@@ -101,18 +84,19 @@
                     </p>
                     <div class="knappOverlay1">
 
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
                         {
-                            @Html.Hidden("eventId", item.Event_id)
+                            @Html.HiddenFor(modelItem => item.Event_id, new { Value = item.Event_id })
                             <div><input type="submit" value="Anmäll dig som besökare" /><br /></div>
                             <div>@Html.ValidationSummary()</div>
                         }
                         <br />
                         @if (item.Event_Seeking_Volunteers == true)
                         {
-                            using (Html.BeginForm())
+                            using (Html.BeginForm("Index", "Home", FormMethod.Post))
                             {
-                                @Html.Hidden("eventId", item.Event_id, "Volonter")
+                                @Html.HiddenFor(modelItem => item.Event_id, new { Value = item.Event_id })
+                                @Html.Hidden("volontär")
                                 <div><input type="submit" value="Anmäll dig som volontär" /><br /></div>
                                 <div>@Html.ValidationSummary()</div>
                             }
@@ -136,6 +120,6 @@
                 </div>-->
                 </div>
             </div>
-            </div>
+           
         }
     </div>
