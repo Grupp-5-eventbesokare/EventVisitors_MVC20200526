@@ -101,7 +101,7 @@
                     </p>
                     <div class="knappOverlay1">
 
-                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        @using (Html.BeginForm("Anmalan", "Home", FormMethod.Post))
                         {
                             @Html.HiddenFor(modelItem => item.Event_id, new { Value = item.Event_id })
                             <div><input type="submit" value="Anmäll dig som besökare" /><br /></div>
@@ -110,10 +110,9 @@
                         <br />
                         @if (item.Event_Seeking_Volunteers == true)
                         {
-                            using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                            using (Html.BeginForm("VolonterAnmalan", "Home", FormMethod.Post))
                             {
                                 @Html.HiddenFor(modelItem => item.Event_id, new { Value = item.Event_id })
-                                @Html.Hidden("volontär")
                                 <div><input type="submit" value="Anmäll dig som volontär" /><br /></div>
                                 <div>@Html.ValidationSummary()</div>
                             }
@@ -139,19 +138,20 @@
                 </div>
             </div>-->
             </div>
-
+            
            
-=======
 
-        </div>
-    </div>
+
+
+ 
         }
     
-    </div>
 
-            </div>
+
+    
 
         }
-    </div>
+
 }
 
+    </div>

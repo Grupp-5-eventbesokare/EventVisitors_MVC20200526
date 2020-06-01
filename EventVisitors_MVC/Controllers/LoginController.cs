@@ -65,12 +65,12 @@ namespace EventVisitors_MVC.Controllers
                     string svarFrånLogin = response.Content.ReadAsStringAsync().Result;
 
                     LoginClass objektFrånWS = JsonConvert.DeserializeObject<LoginClass>(svarFrånLogin);
-                  
+
                     if (objektFrånWS != null)
                     {
-                         bool ValidProfile = false;
-                         ValidProfile = CheckUserProfile(objektFrånWS.id); //objektFrånWS.id är från login gruppen, vilket är lagrat som User_Id i vår databas
-                        if (ValidProfile == true) 
+                        bool ValidProfile = false;
+                        ValidProfile = CheckUserProfile(objektFrånWS.id); //objektFrånWS.id är från login gruppen, vilket är lagrat som User_Id i vår databas
+                        if (ValidProfile == true)
                         {
                             return true;
                         }
@@ -82,10 +82,11 @@ namespace EventVisitors_MVC.Controllers
                 }
                 else
                     return false; //Om  svaret inte är IsSuccessStatusCode så kan vi inte godkänna inloggningen
-
+            }
+            }
         //Skickar värderna som användaren skriver in
         [HttpPost] 
-        public ActionResult LoginUser(LoginClass inlogg)
+        public ActionResult Login(LoginClass inlogg)
         {
             LoginClass inloggBes;
             using (var client = new HttpClient())

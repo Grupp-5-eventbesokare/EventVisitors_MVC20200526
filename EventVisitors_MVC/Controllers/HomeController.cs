@@ -196,16 +196,15 @@ namespace EventVisitors_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult VolonterAnmalan(EventsClass anmalan, ProfilesClass person, string Volonteer)
+        public ActionResult VolonterAnmalan(EventsClass anmalan, ProfilesClass person)
         {
             int eventId = anmalan.Event_id;
             int personId = person.Profile_Id;
-            string volontär = Volonteer;
             {
 
                 using (var client = new HttpClient())
                 {
-                    var User_Type = volontär;
+                    var User_Type = "volonteer";
                     client.BaseAddress = new Uri("http://193.10.202.77");
                     var response = client.PostAsJsonAsync("/api/Bookings/Event/" + eventId + "/Volounteer", personId).Result;
                     if (response.IsSuccessStatusCode)
