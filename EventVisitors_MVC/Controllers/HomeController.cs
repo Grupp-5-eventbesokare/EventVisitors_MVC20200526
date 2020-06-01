@@ -170,10 +170,10 @@ namespace EventVisitors_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Anmalan (EventsClass anmalan, ProfilesClass person )
+        public ActionResult Anmalan (int eventId, ProfilesClass person )
         {
 
-            int eventId = anmalan.Event_id;
+
             int personId = person.Profile_Id;
             {
                 using (var client = new HttpClient())
