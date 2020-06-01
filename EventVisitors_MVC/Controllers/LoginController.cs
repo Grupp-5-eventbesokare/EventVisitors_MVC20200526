@@ -9,11 +9,14 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace EventVisitors_MVC.Controllers
 {
     public class LoginController : Controller
     {
+
+
         // GET: Login
         public ActionResult Index()
         {
@@ -25,9 +28,65 @@ namespace EventVisitors_MVC.Controllers
             return View();
         }
 
+
+
+        [HttpPost]
+        public ActionResult LoginUser(LoginClass login)
+        {
+            if (login.Email == null || login.Password == null)
+            {
+                ModelState.AddModelError("", "Du måste fylla i både användarnamn och lösenord");
+                return View();
+            }
+            bool validUser = false;
+
+            validUser = checkUser(login);
+
+            if (validUser == true)
+            {    
+                System.Web.Security.FormsAuthentication.RedirectFromLoginPage(login.Email, false);
+               
+            }
+            ModelState.AddModelError("", "Inloggningen ej godkänd");
+            return View();
+
+        }
+
+        private bool checkUser(LoginClass inlogg)
+        {
+            using (var client = new HttpClient())
+            {
+                LoginClass login = new LoginClass { Email = inlogg.Email, Password = inlogg.Password };
+
+                client.BaseAddress = new Uri("http://193.10.202.76/api/");
+                var response = client.PostAsJsonAsync("visitorlogin", login).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string svarFrånLogin = response.Content.ReadAsStringAsync().Result;
+
+                    LoginClass objektFrånWS = JsonConvert.DeserializeObject<LoginClass>(svarFrånLogin);
+
+                    if (objektFrånWS != null)
+                    {
+                        bool ValidProfile = false;
+                        ValidProfile = CheckUserProfile(objektFrånWS.id); //objektFrånWS.id är från login gruppen, vilket är lagrat som User_Id i vår databas
+                        if (ValidProfile == true)
+                        {
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+                else
+                    return false; //Om  svaret inte är IsSuccessStatusCode så kan vi inte godkänna inloggningen
+            }
+            }
         //Skickar värderna som användaren skriver in
         [HttpPost] 
-        public ActionResult LoginUser(LoginClass inlogg)
+        public ActionResult Login(LoginClass inlogg)
         {
             LoginClass inloggBes;
             using (var client = new HttpClient())
@@ -37,11 +96,6 @@ namespace EventVisitors_MVC.Controllers
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync("visitorlogin", login).Result;
-                //postTask.Wait();
-                //var result = postTask.Result;
-                //inlogg.Profile_User_Id = postTask;
-                //ProfilesClass b = new ProfilesClass{ Profile_User_Id=inlogg.Profile_User_Id};
-                //checkUser(b);
 
                 if (postTask.IsSuccessStatusCode)
                 {
@@ -55,20 +109,54 @@ namespace EventVisitors_MVC.Controllers
                 ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
                 return View();
-            }
 
+            }
         }
 
-        public async Task<ActionResult> checkUser(ProfilesClass b)
+
+        private bool CheckUserProfile(int objektfrånWS) //Metod för att kontrollera mot vår egna databas, och få fram ett id på användaren
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:19779/api/");
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync("/api/MyProfile/" + b);
-                return View(Res);
+
+                LoginClass anvandareAttKolla = new LoginClass { User_Id = objektfrånWS }; //Skickar in logingruppens id (Vårat user_Id)
+
+                client.BaseAddress = new Uri("http://localhost:19779/");
+
+                var response = client.PostAsJsonAsync("MyProfile", anvandareAttKolla).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var svarFrånRest = response.Content.ReadAsStringAsync().Result;
+                    var jsonResult = JsonConvert.DeserializeObject(svarFrånRest).ToString(); // Gör deserialize två gånger, då det annars uppstår ett felmeddelande om att det inte går att konvertera datatyperna
+                    LoginClass objektProfile = JsonConvert.DeserializeObject<LoginClass>(jsonResult);
+
+
+                    if (objektProfile !=null) //Kontrollerar så objektet tillbaka inte är null
+                    {
+                        if (objektProfile.User_Id == objektfrånWS) //Om logingruppens id matchar vårat User_Id från databasen
+                        {
+                            
+                            Session["UserProfile"] = objektProfile.id;
+                            return true;
+
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+
+                return false;
             }
+
         }
     }
 }
+
+
+    
+
+
+
+    
+
+

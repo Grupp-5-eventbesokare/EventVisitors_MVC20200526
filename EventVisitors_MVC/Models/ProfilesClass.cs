@@ -19,9 +19,7 @@ namespace EventVisitors_MVC.Models
 
         public string Profile_Email { get; set; }
 
-        public string Profile_Password { get; set; }
-
-        public string Profile_Image { get; set; }
+        //public string Profile_Password { get; set; }
 
         public string Profile_Role { get; set; }
 

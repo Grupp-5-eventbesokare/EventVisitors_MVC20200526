@@ -169,14 +169,18 @@ namespace EventVisitors_MVC.Controllers
             }
         }
 
-        public ActionResult Anmalan (int Event_Id, int Profile_Id)
+        [HttpPost]
+        public ActionResult Anmalan (int eventId, ProfilesClass person )
         {
+
+
+            int personId = person.Profile_Id;
             {
                 using (var client = new HttpClient())
                 {
                     
                     client.BaseAddress = new Uri("http://193.10.202.77");
-                    var response = client.PostAsJsonAsync("/api/Bookings/" + Event_Id, Profile_Id ).Result;
+                    var response = client.PostAsJsonAsync("/api/Bookings/" + eventId, personId ).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         Console.Write("Success");
@@ -191,15 +195,17 @@ namespace EventVisitors_MVC.Controllers
             }
         }
 
-        public ActionResult VolonterAnmalan(int Event_Id, int Profile_Id, string Volonter)
+        [HttpPost]
+        public ActionResult VolonterAnmalan(int eventId, ProfilesClass person)
         {
+            int personId = person.Profile_Id;
             {
 
                 using (var client = new HttpClient())
                 {
-                    var User_Type = "Volonteer";
+                    var User_Type = "volonteer";
                     client.BaseAddress = new Uri("http://193.10.202.77");
-                    var response = client.PostAsJsonAsync("/api/Bookings/Event/" + Event_Id + "/Volounteer", Profile_Id).Result;
+                    var response = client.PostAsJsonAsync("/api/Bookings/Event/" + eventId + "/Volounteer", personId).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         Console.Write("Success");
@@ -208,7 +214,7 @@ namespace EventVisitors_MVC.Controllers
                     else
                         Console.Write("Error");
                    
-                    var response2 = client.PostAsJsonAsync(" / api / Bookings / Event / " + Event_Id + " / Volounteer", User_Type).Result;
+                    var response2 = client.PostAsJsonAsync(" / api / Bookings / Event / " + eventId + " / Volounteer", User_Type).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         Console.Write("Success");
