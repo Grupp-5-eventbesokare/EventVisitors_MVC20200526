@@ -84,9 +84,9 @@ namespace EventVisitors_MVC.Controllers
                 else
                     return false; //Om  svaret inte är IsSuccessStatusCode så kan vi inte godkänna inloggningen
             }
-            }
+        }
         //Skickar värderna som användaren skriver in
-        [HttpPost] 
+        /*[HttpPost] 
         public ActionResult Login(LoginClass inlogg)
         {
             LoginClass inloggBes;
@@ -112,7 +112,7 @@ namespace EventVisitors_MVC.Controllers
                 return View();
 
             }
-        }
+        }*/
 
 
         private bool CheckUserProfile(int objektfrånWS) //Metod för att kontrollera mot vår egna databas, och få fram ett id på användaren
@@ -122,7 +122,7 @@ namespace EventVisitors_MVC.Controllers
 
                 LoginClass anvandareAttKolla = new LoginClass { User_Id = objektfrånWS }; //Skickar in logingruppens id (Vårat user_Id)
 
-                client.BaseAddress = new Uri("http://193.10.202.82/MyProfile/api/");
+                client.BaseAddress = new Uri("http://193.10.202.82/MyProfile/api");
 
                 var response = client.PostAsJsonAsync("MyProfile", anvandareAttKolla).Result;
                 if (response.IsSuccessStatusCode)

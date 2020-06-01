@@ -122,7 +122,7 @@ namespace EventVisitors_MVC.Controllers
                         kategori = kategori.Where(s => s.Event_Category.Category_Name.Contains(selectedCategory));
                         break;
                     default:
-                        kategori = kategori.OrderBy(s => s.Event_Arranger_Id);
+                        kategori = kategori.OrderBy(s => s.Event_Organizer.Id);
                         break;
                 }
 

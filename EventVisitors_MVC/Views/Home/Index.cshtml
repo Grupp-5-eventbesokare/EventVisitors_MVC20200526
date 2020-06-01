@@ -70,26 +70,23 @@
                 Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
             </p>
             <p>
-                Biljettpris: @Html.DisplayFor(modelItem => item.Event_id)
+                Arrangör: @Html.DisplayFor(modelItem => item.Event_Organizer.Name)
             </p>
             <p>
-                Arrangör: Namn på arrangör
+                Event_Id: @Html.DisplayFor(modelItem => item.Event_id)
             </p>
-            <p>
+            @*<p>
                 Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
-            </p>
+            </p>*@
         </div>
         <div class="overlay">
-            <p class="text">
-                @Html.DisplayFor(modelItem => item.Event_Description)
-                <br />
-                Plats:
-            </p>
-                <div class="overlay">
                     <p class="text">
+                        Mer om eventet:
                         @Html.DisplayFor(modelItem => item.Event_Description)
                         <br />
-                        Plats:
+                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.City) <!-- Detta verkar inte fungera från EventsClass -->
+                        <br />
+                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.Place_Name) <!-- Detta verkar inte fungera från EventsClass -->
                     </p>
                     <div class="knappOverlay1">
 
@@ -125,9 +122,8 @@
                     </div>
                 </div>-->
 
-              </div>
+        </div>
          </div>
-    </div>
 
 }
 </div>
