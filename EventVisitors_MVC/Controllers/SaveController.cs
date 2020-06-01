@@ -11,23 +11,16 @@ namespace EventVisitors_MVC.Controllers
 
         //Gjorde vyn utifrån EventsClass, vet inte om vi ska ha en annan klass eller det är det som skall vara?
 
-        public class BookingsClass
-        {
-            public int Profile_Id { get; set; }
+        
 
-            public int Event_Id { get; set; }
-
-            public string Profile_Role { get; set; }
-        }
-
-        class SaveEventsController
+        /*class SaveEventsController
         {
             static void Main(string[] args)
             {
                 using (var client = new HttpClient())
                 {
 
-                    BookingsClass b = new BookingsClass { Profile_Id = 1, Event_Id = 2, Profile_Role = "Besökare" };
+                    BookingClass b = new BookingClass { Profile_Id = 1, Event_Id = 2, Profile_Role = "Besökare" };
                     client.BaseAddress = new Uri("http://193.10.202.81/BookingService");
                     var response = client.PostAsJsonAsync("/api/Bookings", b).Result;
 
@@ -55,6 +48,6 @@ namespace EventVisitors_MVC.Controllers
         {
 
             return View();
-        }
+        }*/
     }
 }

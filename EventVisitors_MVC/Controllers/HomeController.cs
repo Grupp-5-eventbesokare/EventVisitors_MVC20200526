@@ -170,63 +170,56 @@ namespace EventVisitors_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Anmalan (int eventId, ProfilesClass person )
+        public ActionResult Anmalan (int eventId, ProfilesClass person, BookingClass bokning)
         {
-
-
-            int personId = person.Profile_Id;
-            {
+            
+            //int personId = person.Profile_Id;
+            
                 using (var client = new HttpClient())
                 {
-                    
-                    client.BaseAddress = new Uri("http://193.10.202.77");
-                    var response = client.PostAsJsonAsync("/api/Bookings/" + eventId, personId ).Result;
+                  
+                    BookingClass b = new BookingClass { User_Id = 27, Event_Id = eventId, User_Type = "Besökare" };
+
+                    //var User_Type = "Besökare";
+                    client.BaseAddress = new Uri("http://193.10.202.81");
+                    var response = client.PostAsJsonAsync("/BookingService/api/Bookings/", b).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         Console.Write("Success");
-                        return View();
+                        
                     }
                     else
                         Console.Write("Error");
-                    return View();
+
+                        return RedirectToAction("Index");
 
                 }
-
-            }
         }
 
         [HttpPost]
-        public ActionResult VolonterAnmalan(int eventId, ProfilesClass person)
+        public ActionResult VolonterAnmalan(int eventId, ProfilesClass person, BookingClass bokning)
         {
-            int personId = person.Profile_Id;
-            {
+            //int personId = person.Profile_Id;
 
                 using (var client = new HttpClient())
                 {
-                    var User_Type = "volonteer";
-                    client.BaseAddress = new Uri("http://193.10.202.77");
-                    var response = client.PostAsJsonAsync("/api/Bookings/Event/" + eventId + "/Volounteer", personId).Result;
+                    BookingClass b = new BookingClass { User_Id = 28, Event_Id = eventId, User_Type = "Volontär" };
+
+                    //var User_Type = "Besökare";
+                    client.BaseAddress = new Uri("http://193.10.202.81");
+                    var response = client.PostAsJsonAsync("/BookingService/api/Bookings/", b).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         Console.Write("Success");
-                      
+                        
                     }
                     else
                         Console.Write("Error");
-                   
-                    var response2 = client.PostAsJsonAsync(" / api / Bookings / Event / " + eventId + " / Volounteer", User_Type).Result;
-                    if (response.IsSuccessStatusCode)
-                    {
-                        Console.Write("Success");
-                        return View();
-                    }
-                    else
-                        Console.Write("Error");
-                    return View();
+
+                        return RedirectToAction("Index");
 
                 }
 
-            }
         }
 
         /*string BaseUrlBooking = "http://localhost:8080"; // Här tänker jag att vi ska POST:a till ApplyToEvent (bokningsgruppen)

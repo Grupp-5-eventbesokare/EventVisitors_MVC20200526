@@ -62,8 +62,8 @@ namespace EventVisitors_MVC.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://193.10.202.82//api/");
-                var postTask = client.PostAsJsonAsync("MyProfile", newProfile);
+                client.BaseAddress = new Uri("http://193.10.202.82/MyProfile/api/");
+                var postTask = client.PostAsJsonAsync("Profiles", newProfile);
 
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)

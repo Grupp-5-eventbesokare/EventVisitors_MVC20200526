@@ -38,6 +38,7 @@ namespace EventVisitors_MVC.Controllers
                 ModelState.AddModelError("", "Du måste fylla i både användarnamn och lösenord");
                 return View();
             }
+
             bool validUser = false;
 
             validUser = checkUser(login);
@@ -121,7 +122,7 @@ namespace EventVisitors_MVC.Controllers
 
                 LoginClass anvandareAttKolla = new LoginClass { User_Id = objektfrånWS }; //Skickar in logingruppens id (Vårat user_Id)
 
-                client.BaseAddress = new Uri("http://localhost:19779/");
+                client.BaseAddress = new Uri("http://193.10.202.82/MyProfile/api/");
 
                 var response = client.PostAsJsonAsync("MyProfile", anvandareAttKolla).Result;
                 if (response.IsSuccessStatusCode)
