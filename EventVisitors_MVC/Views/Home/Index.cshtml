@@ -72,12 +72,12 @@
             <p>
                 Arrangör: @Html.DisplayFor(modelItem => item.Event_Organizer.Name)
             </p>
-            <p>
-                Event_Id: @Html.DisplayFor(modelItem => item.Event_id)
-            </p>
-            @*<p>
-                Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
+            @*  <p>
+            Event_Id: @Html.DisplayFor(modelItem => item.Event_id)
             </p>*@
+            @*<p>
+            Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
+        </p>*@
         </div>
         <div class="overlay">
                     <p class="text">
@@ -92,7 +92,7 @@
 
                         @using (Html.BeginForm("Anmalan", "Home", new { eventId = item.Event_id }, FormMethod.Post))
                         {
-                            <div><input type="submit" value="Anmäl dig som besökare" /><br /></div>
+                            <div class="knapp"><input type="submit" value="Anmäl dig som besökare" /><br /></div>
                             <div>@Html.ValidationSummary()</div>
                         }
                         <br />
@@ -100,7 +100,7 @@
                         {
                             using (Html.BeginForm("VolonterAnmalan", "Home", new { eventId = item.Event_id }, FormMethod.Post))
                             {
-                                <div><input type="submit" value="Anmäl dig som volontär" /><br /></div>
+                                <div class="knapp"><input type="submit" value="Anmäl dig som volontär" /><br /></div>
                                 <div>@Html.ValidationSummary()</div>
                             }
                         }
