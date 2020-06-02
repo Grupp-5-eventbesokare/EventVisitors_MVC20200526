@@ -21,16 +21,14 @@ namespace EventVisitors_MVC.Controllers
         public async Task<ActionResult> Index(string selectedCategory)
         {
             List<EventsClass> EventsList = new List<EventsClass>();
-            //if (Session[Anvandare] != null)
-            //{
-            //    Anvandare aktuelanvandarefransession = (Anvandare)Session["Anvandare"]
-            //}
+            string id = Session["User_Id_Profile"].ToString();
+            int ProfileId = Int32.Parse(id);
             using (var ApiClient = new HttpClient())
             {
                 ApiClient.BaseAddress = new Uri(BaseUrlBookings);
                 ApiClient.DefaultRequestHeaders.Clear();
                 ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await ApiClient.GetAsync("/BookingService/api/Bookings/User/1"); // Eventgruppens Controller och Get-Metod
+                HttpResponseMessage Res = await ApiClient.GetAsync("/BookingService/api/Bookings/User/"+ ProfileId); // Eventgruppens Controller och Get-Metod
 
                 if (Res.IsSuccessStatusCode)
                 {
@@ -126,8 +124,9 @@ namespace EventVisitors_MVC.Controllers
 
             using (var client = new HttpClient())
             {
-
-                int uId = 27;
+                string id = Session["User_Id_Profile"].ToString();
+                int ProfileId = Int32.Parse(id);
+                int uId = ProfileId;
                 int eId = eventId;
 
                 //var User_Type = "Besökare";
@@ -153,8 +152,10 @@ namespace EventVisitors_MVC.Controllers
 
             using (var client = new HttpClient())
             {
-                int uId = 28;
-                int eId = eventId; ;
+                string id = Session["User_Id_Profile"].ToString();
+                int ProfileId = Int32.Parse(id);
+                int uId = ProfileId;
+                int eId = eventId;
 
                 //var User_Type = "Besökare";
                 client.BaseAddress = new Uri("http://193.10.202.81");
