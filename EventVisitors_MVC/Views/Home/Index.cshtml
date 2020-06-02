@@ -80,14 +80,14 @@
             </p>*@
         </div>
         <div class="overlay">
-                    <p class="text">
-                        Mer om eventet:
-                        @Html.DisplayFor(modelItem => item.Event_Description)
-                        <br />
-                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.City) <!-- Detta verkar inte fungera från EventsClass -->
-                        <br />
-                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.Place_Name) <!-- Detta verkar inte fungera från EventsClass -->
-                    </p>
+            <p class="text">
+                Mer om eventet:
+                @Html.DisplayFor(modelItem => item.Event_Description)
+                <br />
+                Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.City) <!-- Detta verkar inte fungera från EventsClass, item.Event_Facility.Event_Place.City -->
+                <br />
+                Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.Place_Name) <!-- Detta verkar inte fungera från EventsClass, .Event_Facility.Event_Place.Place_Name -->
+            </p>
                     <div class="knappOverlay1">
 
                         @using (Html.BeginForm("Anmalan", "Home", new { eventId = item.Event_id }, FormMethod.Post))
