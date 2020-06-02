@@ -52,6 +52,8 @@ textarea {
 /* Ändra första på länken på navbaren */
 a.navbarBrand {
     color: black;
+    font-family: Stencil;
+    font-weight: bold;
     font-size: 35px;
 }
 
