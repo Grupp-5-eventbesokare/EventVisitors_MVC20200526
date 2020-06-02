@@ -36,6 +36,8 @@ namespace EventVisitors_MVC.Models
 
         public string Event_Create_Datetime { get; set; }
 
+        public string User_Type { get; set; }
+
         public Event_Category Event_Category { get; set; }
     }
 

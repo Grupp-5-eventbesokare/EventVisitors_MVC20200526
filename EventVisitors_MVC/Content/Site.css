@@ -216,3 +216,7 @@ a.navbarBrand:active {
 .tab {
     tab-size: 4;
 }
+
+h1.Pagetitle {
+    text-align: center;
+}
