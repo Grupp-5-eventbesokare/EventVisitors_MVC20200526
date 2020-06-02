@@ -203,10 +203,14 @@ namespace EventVisitors_MVC.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    BookingClass b = new BookingClass { User_Id = 28, Event_Id = eventId, User_Type = "Volontär" };
+                //  BookingClass b = new BookingClass { User_Id = 28, Event_Id = eventId, User_Type = "Volontär" };
 
-                    //var User_Type = "Besökare";
-                    client.BaseAddress = new Uri("http://193.10.202.81");
+                string id = Session["User_Id_Profile"].ToString();
+                int User_ProfileId = Int32.Parse(id);
+                BookingClass b = new BookingClass { User_Id = User_ProfileId, Event_Id = eventId, User_Type = "Volontär" };
+
+                //var User_Type = "Besökare";
+                client.BaseAddress = new Uri("http://193.10.202.81");
                     var response = client.PostAsJsonAsync("/BookingService/api/Bookings/", b).Result;
                     if (response.IsSuccessStatusCode)
                     {
@@ -221,6 +225,11 @@ namespace EventVisitors_MVC.Controllers
                 }
 
         }
+
+        //Skapa en extra metod som anropar vår put. Sätt den innan vi skickar iväg värdet till dom. 
+
+
+
 
         /*string BaseUrlBooking = "http://localhost:8080"; // Här tänker jag att vi ska POST:a till ApplyToEvent (bokningsgruppen)
         [HttpPost]
