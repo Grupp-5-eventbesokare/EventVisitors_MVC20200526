@@ -12,6 +12,7 @@ using System.EnterpriseServices;
 
 namespace EventVisitors_MVC.Controllers
 {
+    [Authorize]
     public class SavedEventsController : Controller
     {
         // GET: Home
