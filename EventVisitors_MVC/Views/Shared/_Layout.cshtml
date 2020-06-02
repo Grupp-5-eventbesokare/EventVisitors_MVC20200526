@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Events</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <!--<link href="~/Views/Shared/Startpage.css" rel="stylesheet" />-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!--<link href="~/Views/Shared/Profile.css" rel="stylesheet" />-->
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
 </head>
@@ -25,7 +23,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav ul-nav navel">
                     <li>@Html.ActionLink("Min profil", "Index", "Profile")</li>
-                    <li>@Html.ActionLink("Sparade event", "Index", "SavedEvents")</li> <!-- Vyn är på index på Save-controllern nu! Hittar inte vart man gör dropdown med ul/li-->                    
+                    <li>@Html.ActionLink("Sparade event", "Index", "SavedEvents")</li> 
                     <li>@Html.ActionLink("Logga in", "LoginUser", "Login")</li>
                 </ul>
             </div>
@@ -41,20 +39,7 @@
                     <p>&copy; @DateTime.Now.Year - Events</p>
                 </div>
                 <div class="customBlock dropd">
-                    @Html.ActionLink("Vill du arrangera ett event?", "", "", new { @class = "dropd" })
-                    <!--
-                    <br /> <br />
-                    <div class="dropdown dropd">
-                        <a class="dropdown-toggle dropd" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Administration
-                        </a>
-                        <div class="dropdown-menu dropd" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item dropd dropdItem" href="#">Systemadministratör</a>
-                            <a class="dropdown-item dropd dropdItem" href="#">Eventadministratör</a>
-                            <a class="dropdown-item dropd dropdItem" href="#">Bokningsadministratör</a>
-                        </div>
-                    </div>
-                    -->
+                    <a href="http://193.10.202.78/Event/Organizer/Index" class="dropd">Vill du arrangera ett event?</a>
                 </div>
             </div>
         </footer>
