@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace EventVisitors_MVC.Controllers
 {
@@ -20,6 +21,11 @@ namespace EventVisitors_MVC.Controllers
 
             return View();
         }
+
+        public ActionResult LogoutUser() // Här är funktionen som anropas när man klickar på knappen för att logga ut
+        {            FormsAuthentication.SignOut();            Session.Abandon();            return RedirectToAction("LoginUser", "Login");
+        }
+
 
         [HttpPost]
         public ActionResult LoginUser(LoginClass login)

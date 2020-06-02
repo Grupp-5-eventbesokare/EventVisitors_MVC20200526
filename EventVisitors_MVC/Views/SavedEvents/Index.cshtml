@@ -1,19 +1,18 @@
 ﻿@model IEnumerable<EventVisitors_MVC.Models.EventsClass>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sparade Events";
 }
 
-@Session["Namn"]
-
-<div class="jumbotron">
-    <h1 class="Pagetitle">Dina sparade event</h1>
+<div>
+    <h2>Dina sparade event</h2>
     <p>Filtrering av Event</p>
 
     @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
 
     @Html.ActionLink("Volontär", "Index", new { selectedCategory = "Volontär" }, new { @class = "btn btn-primary", @style = "color:white" })
-
+    <br />
+    <br />
 </div>
 <div class="row">
 
@@ -23,7 +22,7 @@
             <br />
             <div class="card-body d-flex flex-column">
                 <p>
-                    @Html.DisplayFor(modelItem => item.Event_Name)
+                    <strong>@Html.DisplayFor(modelItem => item.Event_Name)</strong>
                 </p>
                 <p>
                     Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
@@ -31,23 +30,18 @@
                 <p>
                     Slut: @Html.DisplayFor(modelItem => item.Event_End_Datetime)
                 </p>
-                <p>
-                    Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
-                </p>
-                <p>
-                    Arrangör: @Html.DisplayFor(modelItem => item.Event_Organizer.Name)
-                </p>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
 
             </div>
             <div class="overlay">
-                <p class="text">
-                    Mer om eventet:
-                        @Html.DisplayFor(modelItem => item.Event_Description)
-                    <br />
-                    Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Place.City)
-                    <br />
-                    Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name)
-                </p>
                 <div class="knappOverlay1">
 
                     @using (Html.BeginForm("AvAnmalan", "SavedEvents", new { eventId = item.Event_id }, FormMethod.Post))

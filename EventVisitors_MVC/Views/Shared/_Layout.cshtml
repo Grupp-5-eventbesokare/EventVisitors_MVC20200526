@@ -23,8 +23,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav ul-nav navel">
                     <li>@Html.ActionLink("Min profil", "Index", "Profile")</li>
-                    <li>@Html.ActionLink("Sparade event", "Index", "SavedEvents")</li> 
-                    <li>@Html.ActionLink("Logga in", "LoginUser", "Login")</li>
+                    <li>@Html.ActionLink("Sparade event", "Index", "SavedEvents")</li>
+                    @if (Session["User_Id_Profile"] == null)
+                    {
+                        <li>@Html.ActionLink("Logga in", "LoginUser", "Login")</li>}
+                    else
+                    {<li> @Html.ActionLink("Logga ut", "LogoutUser", "Login") </li>}
                 </ul>
             </div>
         </div>
