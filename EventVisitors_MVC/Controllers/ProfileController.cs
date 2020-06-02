@@ -19,7 +19,7 @@ namespace EventVisitors_MVC.Controllers
         public async Task<ActionResult> Index()
         {
 
-         string id = Session["UserProfile"].ToString();
+            string id = Session["UserProfile"].ToString();
             int ProfileId = Int32.Parse(id);
 
             ProfilesClass Profile;
@@ -30,7 +30,7 @@ namespace EventVisitors_MVC.Controllers
                 ApiClient.BaseAddress = new Uri(BaseUrl);
                 ApiClient.DefaultRequestHeaders.Clear();
                 ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await ApiClient.GetAsync("/api/MyProfile/" + ProfileId);  
+                HttpResponseMessage Res = await ApiClient.GetAsync("/api/Profiles/" + ProfileId);  
 
                 if (Res.IsSuccessStatusCode)
                 {
