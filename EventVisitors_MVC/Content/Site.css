@@ -56,7 +56,7 @@ a.navbarBrand {
     font-weight: bold;
     font-size: 35px;
 }
-
+/*Denna (nedan) kan tas bort enligt den upplagda designen. */
 a.navbarBrand:hover {
         color: black;
         font-weight: bold;

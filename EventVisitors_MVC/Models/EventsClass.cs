@@ -65,7 +65,7 @@ namespace EventVisitors_MVC.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public Place Event_Place { get; set; }
+        public Place Place { get; set; }
 
     }
     public class Place
@@ -74,6 +74,6 @@ namespace EventVisitors_MVC.Models
 
         public int Id { get; set; }
 
-        public string Place_Name { get; set; }
+        public string Name { get; set; }
     }
 }

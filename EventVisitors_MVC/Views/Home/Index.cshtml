@@ -72,9 +72,6 @@
             <p>
                 Arrangör: @Html.DisplayFor(modelItem => item.Event_Organizer.Name)
             </p>
-            <p>
-                Event_Id: @Html.DisplayFor(modelItem => item.Event_id)
-            </p>
             @*<p>
                 Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
             </p>*@
@@ -84,9 +81,9 @@
                         Mer om eventet:
                         @Html.DisplayFor(modelItem => item.Event_Description)
                         <br />
-                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.City) <!-- Detta verkar inte fungera från EventsClass -->
+                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Place.City) <!-- Detta verkar inte fungera från EventsClass -->
                         <br />
-                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Event_Place.Place_Name) <!-- Detta verkar inte fungera från EventsClass -->
+                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name) <!-- Detta verkar inte fungera från EventsClass -->
                     </p>
                     <div class="knappOverlay1">
 
