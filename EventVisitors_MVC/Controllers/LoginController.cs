@@ -15,20 +15,11 @@ namespace EventVisitors_MVC.Controllers
 {
     public class LoginController : Controller
     {
-
-
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult LoginUser()
         {
 
             return View();
         }
-
-
 
         [HttpPost]
         public ActionResult LoginUser(LoginClass login)

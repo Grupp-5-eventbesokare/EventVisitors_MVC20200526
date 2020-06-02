@@ -21,11 +21,7 @@ namespace EventVisitors_MVC.Controllers
         public async Task<ActionResult> Index(string selectedCategory)
         {
             List<EventsClass> EventsList = new List<EventsClass>();
-            //if (Session[Anvandare] != null)
-            //{
-            //    Anvandare aktuelanvandarefransession = (Anvandare)Session["Anvandare"]
-            //}
-                using (var ApiClient = new HttpClient())
+            using (var ApiClient = new HttpClient())
             {
                ApiClient.BaseAddress = new Uri(BaseUrlEvents);
                ApiClient.DefaultRequestHeaders.Clear();
@@ -128,12 +124,6 @@ namespace EventVisitors_MVC.Controllers
 
                 return View(kategori.ToList());
 
-                // ToDo:
-                // Kontrollera om eventet är aktivt eller inte
-                // Kontrollera om eventet söker volontär och i sådana fall visa en anmälnings-knapp för det
-                // Hämta id för arrangör och hämta arrangörsinfo från platsgruppen (Post)
-                // Hämta id för platser och hämta platsinfo från platsgruppen (Post)
-
             }
         }
 
@@ -145,7 +135,7 @@ namespace EventVisitors_MVC.Controllers
                 ApiClient.BaseAddress = new Uri(BaseUrlPlaces);
                 ApiClient.DefaultRequestHeaders.Clear();
                 ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await ApiClient.GetAsync("/EventLokal/api/Organizers/"); // Hårdkodar bara in ett id
+                HttpResponseMessage Res = await ApiClient.GetAsync("/EventLokal/api/Organizers/"); 
 
                 if (Res.IsSuccessStatusCode)
                 {
@@ -171,10 +161,7 @@ namespace EventVisitors_MVC.Controllers
 
         [HttpPost]
         public ActionResult Anmalan (int eventId, ProfilesClass person, BookingClass bokning)
-        {
-            
-            //int personId = person.Profile_Id;
-            
+        {        
                 using (var client = new HttpClient())
                 {
                 string id = Session["User_Id_Profile"].ToString();
@@ -183,7 +170,6 @@ namespace EventVisitors_MVC.Controllers
                 int eId = eventId;
                 BookingClass b = new BookingClass { User_Id = uId, Event_Id = eId, User_Type = "Besökare" };
 
-                    //var User_Type = "Besökare";
                     client.BaseAddress = new Uri("http://193.10.202.81");
                     var response = client.PostAsJsonAsync("/BookingService/api/Bookings/", b).Result;
                     if (response.IsSuccessStatusCode)
@@ -202,17 +188,13 @@ namespace EventVisitors_MVC.Controllers
         [HttpPost]
         public ActionResult VolonterAnmalan(int eventId, ProfilesClass person, BookingClass bokning)
         {
-            //int personId = person.Profile_Id;
-
                 using (var client = new HttpClient())
                 {
-                //  BookingClass b = new BookingClass { User_Id = 28, Event_Id = eventId, User_Type = "Volontär" };
 
                 string id = Session["User_Id_Profile"].ToString();
                 int User_ProfileId = Int32.Parse(id);
                 BookingClass b = new BookingClass { User_Id = User_ProfileId, Event_Id = eventId, User_Type = "Volontär" };
 
-                //var User_Type = "Besökare";
                 client.BaseAddress = new Uri("http://193.10.202.81");
                     var response = client.PostAsJsonAsync("/BookingService/api/Bookings/", b).Result;
                     if (response.IsSuccessStatusCode)
@@ -226,50 +208,7 @@ namespace EventVisitors_MVC.Controllers
                         return RedirectToAction("Index");
 
                 }
-
         }
-
-        //Skapa en extra metod som anropar vår put. Sätt den innan vi skickar iväg värdet till dom. 
-
-
-
-
-        /*string BaseUrlBooking = "http://localhost:8080"; // Här tänker jag att vi ska POST:a till ApplyToEvent (bokningsgruppen)
-        [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromUri] int User_Id, int Event_Id, string User_Type)
-        {
-            int U_id = 1;
-            U_id = User_Id;
-            int E_id = 2;
-            E_id = Event_Id;
-            string U_Type = "Besökare";
-            U_Type = User_Type;
-
-            if (!Request.Content.IsMimeMultipartContent())
-            {
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }
-            var success = true;
-            List<object> lista = new List<object>();
-            var provider = new MultipartMemoryStreamProvider();
-            await Request.Content.ReadAsMultipartAsync(provider);
-            foreach (var requestContents in provider.Contents)
-            {
-                if (requestContents.Headers.ContentDisposition.Name == "customer")
-                {
-                    Customer q1 = JsonConvert.DeserializeObject<Customer>(requestContents.ReadAsStringAsync().Result);
-                    lista.Add(q1);
-                }
-                else if (requestContents.Headers.ContentDisposition.Name == "order")
-                {
-                    Order q1 = JsonConvert.DeserializeObject<Order>(requestContents.ReadAsStringAsync().Result);
-                    lista.Add(q1);
-                }
-            }
-            List<object> newshowlista = lista;
-            HttpResponseMessage result = Request.CreateResponse(success ? HttpStatusCode.OK : HttpStatusCode.InternalServerError, success);
-            return result;
-        } */
 
     }
     

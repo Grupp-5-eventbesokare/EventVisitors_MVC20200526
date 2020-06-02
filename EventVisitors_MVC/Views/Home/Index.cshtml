@@ -81,9 +81,9 @@
                         Mer om eventet:
                         @Html.DisplayFor(modelItem => item.Event_Description)
                         <br />
-                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Place.City) <!-- Detta verkar inte fungera från EventsClass -->
+                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Place.City) 
                         <br />
-                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name) <!-- Detta verkar inte fungera från EventsClass -->
+                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name)
                     </p>
                     <div class="knappOverlay1">
 
@@ -103,24 +103,8 @@
                         }
                     </div>
 
-                    <!-- OM VI SKA HA DROPPDOWN
-                <div class="knappOverlay1">
-                <div class="btn-group">
-                    <button type="button" class="btn knapp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Anmälan
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-left">
-                        <button class="dropdown-item" type="button" id="SaveEvent">Spara Event</button>
-                        if (item.Event_Active == true)
-                        {
-                            <button class="dropdown-item" type="button" id="BeVolonteer">Bli Volontär</button>
-                        }
-                    </div>
-                    </div>
-                </div>-->
-
         </div>
-         </div>
+     </div>
 
 }
 </div>

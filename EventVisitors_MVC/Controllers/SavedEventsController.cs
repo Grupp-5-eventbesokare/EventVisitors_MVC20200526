@@ -75,12 +75,6 @@ namespace EventVisitors_MVC.Controllers
 
                 return View(kategori.ToList());
 
-                // ToDo:
-                // Kontrollera om eventet är aktivt eller inte
-                // Kontrollera om eventet söker volontär och i sådana fall visa en anmälnings-knapp för det
-                // Hämta id för arrangör och hämta arrangörsinfo från platsgruppen (Post)
-                // Hämta id för platser och hämta platsinfo från platsgruppen (Post)
-
             }
         }
 
@@ -92,7 +86,7 @@ namespace EventVisitors_MVC.Controllers
                 ApiClient.BaseAddress = new Uri(BaseUrlPlaces);
                 ApiClient.DefaultRequestHeaders.Clear();
                 ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await ApiClient.GetAsync("/EventLokal/api/Organizers/"); // Hårdkodar bara in ett id
+                HttpResponseMessage Res = await ApiClient.GetAsync("/EventLokal/api/Organizers/"); 
 
                 if (Res.IsSuccessStatusCode)
                 {
@@ -120,8 +114,6 @@ namespace EventVisitors_MVC.Controllers
         public ActionResult AvAnmalan(int eventId, ProfilesClass person, BookingClass bokning)
         {
 
-            //int personId = person.Profile_Id;
-
             using (var client = new HttpClient())
             {
                 string id = Session["User_Id_Profile"].ToString();
@@ -129,7 +121,6 @@ namespace EventVisitors_MVC.Controllers
                 int uId = ProfileId;
                 int eId = eventId;
 
-                //var User_Type = "Besökare";
                 client.BaseAddress = new Uri("http://193.10.202.81");
                 var response = client.DeleteAsync("/BookingService/api/Bookings/User/" + uId + "/Event/" +eId ).Result;
                 if (response.IsSuccessStatusCode)
@@ -148,8 +139,6 @@ namespace EventVisitors_MVC.Controllers
         [HttpPost]
         public ActionResult AvAnmalanVolonter(int eventId, ProfilesClass person, BookingClass bokning)
         {
-            //int personId = person.Profile_Id;
-
             using (var client = new HttpClient())
             {
                 string id = Session["User_Id_Profile"].ToString();
@@ -157,7 +146,6 @@ namespace EventVisitors_MVC.Controllers
                 int uId = ProfileId;
                 int eId = eventId;
 
-                //var User_Type = "Besökare";
                 client.BaseAddress = new Uri("http://193.10.202.81");
                 var response = client.DeleteAsync("/BookingService/api/Bookings/User/" + uId + "/Event/" + eId).Result;
                 if (response.IsSuccessStatusCode)

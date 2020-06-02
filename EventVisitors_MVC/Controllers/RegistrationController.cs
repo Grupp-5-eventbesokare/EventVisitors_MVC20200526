@@ -14,13 +14,6 @@ namespace EventVisitors_MVC.Controllers
 {
     public class RegistrationController : Controller
     {
-
-        public ActionResult Index()
-        {
-
-            return View();
-        }
-
         public ActionResult RegistrationUser()
         {
 
@@ -30,13 +23,11 @@ namespace EventVisitors_MVC.Controllers
         [HttpPost] //Skickar värderna som användaren skriver in
         public async Task<ActionResult> RegistrationUser(ProfilesClass registration)
         {
-            // REGISTRERING FUNKAR!
 
             registration.Profile_Role = "Besökare"; // Besökare blir standardroll för alla som registrerar sig
             
             using (var client = new HttpClient())
             {
-                // Har hårdkodat in lösenord vilket behövs läggas till i ProfileClass och sedan när vi skickar profileClass till vår REST och ska lagra i DB, undvik att lagra lösenordet
                 RegistrationClass Registration = new RegistrationClass { Email = registration.Profile_Email, Firstname = registration.Profile_Firstname, Lastname = registration.Profile_Lastname, Password = registration.Profile_Password, Role = registration.Profile_Role };
 
                 client.BaseAddress = new Uri("http://193.10.202.76/api/");
