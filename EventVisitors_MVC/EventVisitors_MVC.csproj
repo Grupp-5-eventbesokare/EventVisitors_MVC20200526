@@ -152,6 +152,7 @@
     <Content Include="Image\Images_Events\Other.jpg" />
     <Content Include="Image\Images_Events\Outdoor.jpg" />
     <Content Include="Image\Image_Profiles\Anonym.png" />
+    <Content Include="Image\Namnlös.png" />
     <Content Include="Image\sokBild.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -165,8 +166,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Shared\Profile.css" />
-    <Content Include="Views\Shared\Startpage.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingClass.cs" />
     <Compile Include="Models\EventsClass.cs" />
     <Compile Include="Models\LoginClass.cs" />
     <Compile Include="Models\OrganizerClass.cs" />
@@ -195,12 +195,9 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\SignIn\LoginView.cshtml" />
-    <Content Include="Views\SignIn\Index.cshtml" />
-    <Content Include="Views\Registration\Index.cshtml" />
-    <Content Include="Views\Registration\RegistrationUser.cshtml" />
     <Content Include="Views\Login\LoginUser.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Registration\RegistrationUser.cshtml" />
+    <Content Include="Views\SavedEvents\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,7 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SavedEvents\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

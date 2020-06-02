@@ -3,26 +3,61 @@
 @{
     ViewBag.Title = "Startsida";
 }
+   
+       <div class="jumbotron">
+        <p>Filtrering av Event</p>
 
-<div class="sok text-center jumbotron">
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 sokruta" type="search" placeholder="Sök event...." aria-label="Search">
-        <button class="btn searchButton my-2 my-sm-0 sokknapp" type="submit">Sök</button>
-    </form>
-</div>
+        @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
 
-<div class="row">
+        @Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Bingo", "Index", new { selectedCategory = "Bingo" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Festival", "Index", new { selectedCategory = "Festival" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Loppis", "Index", new { selectedCategory = "Loppis" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Övrigt", "Index", new { selectedCategory = "Övrigt" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Högtid", "Index", new { selectedCategory = "Högtid" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Kultur", "Index", new { selectedCategory = "Kultur" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn btn-primary", @style = "color:white" })
+        <br/>
+        <br/>
+        @Html.ActionLink("Utställning", "Index", new { selectedCategory = "Utställning" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Motion", "Index", new { selectedCategory = "Motion" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Marknad", "Index", new { selectedCategory = "Marknad" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Konsert", "Index", new { selectedCategory = "Konsert" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Ospecificerad", "Index", new { selectedCategory = "Ospecificerad" }, new { @class = "btn btn-primary", @style = "color:white" })
+
+        @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn btn-primary", @style = "color:white" })
+    </div>
+    <div class="row">
+
     @foreach (var item in Model)
     {
     <div class="containerr col-md-3">
-        <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" /> <!-- ~/Image/Images_Events/Exhibition.jpg -->
+        <img src="@Html.DisplayFor(modelItem => item.Event_Imagelink)" class="imageStart" />
         <br />
         <div class="card-body d-flex flex-column">
             <p>
                 @Html.DisplayFor(modelItem => item.Event_Name)
-            </p>
-            <p>
-                @Html.DisplayFor(modelItem => item.Event_Imagelink)
             </p>
             <p>
                 Start: @Html.DisplayFor(modelItem => item.Event_Start_Datetime)
@@ -34,17 +69,41 @@
                 Biljettpris: @Html.DisplayFor(modelItem => item.Event_Ticket_Price)
             </p>
             <p>
-                Arrangör: Namn på arrangör
+                Arrangör: @Html.DisplayFor(modelItem => item.Event_Organizer.Name)
             </p>
+            @*<p>
+                Kategori: @Html.DisplayFor(modelItem => item.Event_Category.Category_Name)
+            </p>*@
         </div>
         <div class="overlay">
-            <p class="text">
-                @Html.DisplayFor(modelItem => item.Event_Description)
-            </p>
-            <p>
-                Plats:
-            </p>
+                    <p class="text">
+                        Mer om eventet:
+                        @Html.DisplayFor(modelItem => item.Event_Description)
+                        <br />
+                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Place.City) 
+                        <br />
+                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name)
+                    </p>
+                    <div class="knappOverlay1">
+
+                        @using (Html.BeginForm("Anmalan", "Home", new { eventId = item.Event_id }, FormMethod.Post))
+                        {
+                            <div><input type="submit" value="Anmäl dig som besökare" /><br /></div>
+                            <div>@Html.ValidationSummary()</div>
+                        }
+                        <br />
+                        @if (item.Event_Seeking_Volunteers == true)
+                        {
+                            using (Html.BeginForm("VolonterAnmalan", "Home", new { eventId = item.Event_id }, FormMethod.Post))
+                            {
+                                <div><input type="submit" value="Anmäl dig som volontär" /><br /></div>
+                                <div>@Html.ValidationSummary()</div>
+                            }
+                        }
+                    </div>
+
         </div>
-    </div>
-    }
+     </div>
+
+}
 </div>

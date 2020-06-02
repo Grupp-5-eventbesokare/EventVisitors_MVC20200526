@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Events</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <!--<link href="~/Views/Shared/Startpage.css" rel="stylesheet" />-->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!--<link href="~/Views/Shared/Profile.css" rel="stylesheet" />-->
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
 </head>
@@ -26,8 +24,11 @@
                 <ul class="nav navbar-nav ul-nav navel">
                     <li>@Html.ActionLink("Min profil", "Index", "Profile")</li>
                     <li>@Html.ActionLink("Sparade event", "Index", "SavedEvents")</li>
-                    <li>@Html.ActionLink("Volontärsanmälningar", "Index", "")</li> <!-- Detta löser vi senare -->
-                    <li>@Html.ActionLink("Logga in", "LoginUser", "Login")</li>
+                    @if (Session["User_Id_Profile"] == null)
+                    {
+                        <li>@Html.ActionLink("Logga in", "LoginUser", "Login")</li>}
+                    else
+                    {<li> @Html.ActionLink("Logga ut", "LogoutUser", "Login") </li>}
                 </ul>
             </div>
         </div>
@@ -37,7 +38,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Events</p>
+            <div class="container row">
+                <div class="customBlock">
+                    <p>&copy; @DateTime.Now.Year - Events</p>
+                </div>
+                <div class="customBlock dropd">
+                    <a href="http://193.10.202.78/Event/Organizer/Index" class="dropd">Vill du arrangera ett event?</a>
+                </div>
+            </div>
         </footer>
     </div>
 

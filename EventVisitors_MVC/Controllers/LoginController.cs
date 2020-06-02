@@ -6,46 +6,128 @@ using System.Net.Http;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace EventVisitors_MVC.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult LoginUser()
         {
 
             return View();
         }
 
-        //Skickar värderna som användaren skriver in
-        [HttpPost] 
-        public ActionResult LoginUser(RegistrationClass inlogg)
+        public ActionResult LogoutUser() // Här är funktionen som anropas när man klickar på knappen för att logga ut
+        {            FormsAuthentication.SignOut();            Session.Abandon();            return RedirectToAction("LoginUser", "Login");
+        }
+
+
+        [HttpPost]
+        public ActionResult LoginUser(LoginClass login)
+        {
+            if (login.Email == null || login.Password == null)
+            {
+                ModelState.AddModelError("", "Du måste fylla i både användarnamn och lösenord");
+                return View();
+            }
+
+            bool validUser = false;
+
+            validUser = checkUser(login);
+
+            if (validUser == true)
+            {    
+                System.Web.Security.FormsAuthentication.RedirectFromLoginPage(login.Email, false);
+               
+            }
+            ModelState.AddModelError("", "Inloggningen ej godkänd");
+            return View();
+
+        }
+
+        private bool checkUser(LoginClass inlogg)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:19779/api/Login");
+                LoginClass login = new LoginClass { Email = inlogg.Email, Password = inlogg.Password };
 
-                //HTTP POST
-                var postTask = client.PostAsJsonAsync("Login", inlogg);
-                postTask.Wait();
-
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                client.BaseAddress = new Uri("http://193.10.202.76/api/");
+                var response = client.PostAsJsonAsync("visitorlogin", login).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    // Anropa API för att påbörja Sessionen
-                    return RedirectToAction("Index", "Home");
+                    string svarFrånLogin = response.Content.ReadAsStringAsync().Result;
+
+                    LoginClass objektFrånWS = JsonConvert.DeserializeObject<LoginClass>(svarFrånLogin);
+
+                    if (objektFrånWS != null)
+                    {
+                        bool ValidProfile = false;
+                        ValidProfile = CheckUserProfile(objektFrånWS.id); //objektFrånWS.id är från login gruppen, vilket är lagrat som User_Id i vår databas
+                        if (ValidProfile == true)
+                        {
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-                return View(inlogg);
+                else
+                    return false; //Om  svaret inte är IsSuccessStatusCode så kan vi inte godkänna inloggningen
             }
+        }
+       
 
+        private bool CheckUserProfile(int objektfrånWS) //Metod för att kontrollera mot vår egna databas, och få fram ett id på användaren
+        {
+            using (var client = new HttpClient())
+            {
+
+                LoginClass anvandareAttKolla = new LoginClass { User_Id = objektfrånWS }; //Skickar in logingruppens id (Vårat user_Id)
+
+                client.BaseAddress = new Uri("http://193.10.202.82/MyProfile/api/CheckUser/"); //Ta bort api om route fungerar
+
+                var response = client.PostAsJsonAsync("MyProfile", anvandareAttKolla).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var svarFrånRest = response.Content.ReadAsStringAsync().Result;
+                    var jsonResult = JsonConvert.DeserializeObject(svarFrånRest).ToString(); // Gör deserialize två gånger, då det annars uppstår ett felmeddelande om att det inte går att konvertera datatyperna
+                    LoginClass objektProfile = JsonConvert.DeserializeObject<LoginClass>(jsonResult);
+
+
+                    if (objektProfile !=null) //Kontrollerar så objektet tillbaka inte är null
+                    {
+                        if (objektProfile.User_Id == objektfrånWS) //Om logingruppens id matchar vårat User_Id från databasen
+                        {
+                            
+                            Session["UserProfile"] = objektProfile.id;
+                            Session["User_Id_Profile"] = objektProfile.User_Id;
+                            return true;
+
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+
+                return false;
+            }
 
         }
     }
 }
+
+
+    
+
+
+
+    
+
+

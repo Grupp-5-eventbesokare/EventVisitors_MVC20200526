@@ -7,11 +7,10 @@ namespace EventVisitors_MVC.Models
 {
     public class RegistrationClass
     {
-        public int Id { get; set; }  
-        public string Registration_Firstname { get; set; }
-        public string Registration_Lastname { get; set; }      
-        public string Registration_Email { get; set; }
-        public string Registration_Password { get; set; }
-        public string Registration_Role { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }      
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
     }
 }
