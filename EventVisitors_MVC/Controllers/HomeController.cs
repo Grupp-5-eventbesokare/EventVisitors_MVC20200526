@@ -177,8 +177,11 @@ namespace EventVisitors_MVC.Controllers
             
                 using (var client = new HttpClient())
                 {
-                  
-                    BookingClass b = new BookingClass { User_Id = 27, Event_Id = eventId, User_Type = "Besökare" };
+                string id = Session["User_Id_Profile"].ToString();
+                int ProfileId = Int32.Parse(id);
+                int uId = ProfileId;
+                int eId = eventId;
+                BookingClass b = new BookingClass { User_Id = uId, Event_Id = eId, User_Type = "Besökare" };
 
                     //var User_Type = "Besökare";
                     client.BaseAddress = new Uri("http://193.10.202.81");

@@ -13,7 +13,6 @@
                         <img src="~/Image/Image_Profiles/Anonym.png" class="img-rounded img-responsive image" />
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        @Session["Namn"]
                         <h4>
                             @Html.DisplayFor(modelItem => modelItem.Profile_Firstname) @Html.DisplayFor(modelItem => modelItem.Profile_Lastname)
                         </h4>
@@ -21,9 +20,9 @@
                             <br />
                             <i class="glyphicon glyphicon-envelope"> </i> @Html.DisplayFor(modelItem => modelItem.Profile_Email)
                             <br />
-                            <i class="glyphicon glyphicon-gift"> </i> <!--Html.DisplayFor(modelItem => modelItem.Profile_Birthday)-->
+                            <i class="glyphicon glyphicon-gift"> </i> @Html.DisplayFor(modelItem => modelItem.Profile_Birthday)
                             <br />
-                            <i class="glyphicon glyphicon-phone"> </i> <!--Html.DisplayFor(modelItem => modelItem.Profile_PhoneNr)-->
+                            <i class="glyphicon glyphicon-phone"> </i> @Html.DisplayFor(modelItem => modelItem.Profile_PhoneNr)
                             <br />
                         </p>
                     </div>

@@ -22,7 +22,9 @@ namespace EventVisitors_MVC.Models
 
         public int Event_Location_Id { get; set; }
 
-        public Event_Facility Event_Facility { get; set; } 
+        public Event_Facility Event_Facility { get; set; }
+
+        public Place Event_Place { get; set; }
 
         public string Event_Description { get; set; }
 
@@ -76,7 +78,7 @@ namespace EventVisitors_MVC.Models
 
         public int Id { get; set; }
 
-        public string Place_Name { get; set; }
+        public string Name { get; set; }
     }
 
 
