@@ -4,46 +4,50 @@
     ViewBag.Title = "Inloggning";
 }
 
-<h2>Inloggning</h2>
+    <body style="background-image: url('../../Image/Bakgrund.jpg'); "> <!--Lägga in någon bild? samma på regristrering-->
+
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+
+                @using (Html.BeginForm())
+                {
+
+                    @Html.AntiForgeryToken()
+
+                    <div>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <h3>Logga in</h3> <br />
+
+                        <div class="loginText">
+                            <p>E-mail: </p>
 
 
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm())
-{
 
-        @Html.AntiForgeryToken()
+                        </div>
+                        <div class="loginText">
+                            <p>Lösenord: </p>
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @style= "" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-               
-                <p class="control-label col-md-2">E-mail: </p>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        </div>
 
-            <div class="form-group">
-              
-                <p class="control-label col-md-2">Lösenord: </p>
-                <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-group text-center">
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Logga in" class="btn knapp" />
+                            <input type="submit" value="Logga in" class="btn brown" />
+
+                        </div>
+                    </div>
+                }
+
+                <div id="formFooter">
+                    @Html.ActionLink("Jag vill registrera mig", "RegistrationUser", "Registration")
                 </div>
             </div>
         </div>
-    }
 
-<div>
-    @Html.ActionLink("Jag vill registrera mig", "RegistrationUser", "Registration")
-</div>
-
+    </body>

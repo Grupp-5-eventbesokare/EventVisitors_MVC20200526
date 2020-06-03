@@ -4,50 +4,58 @@
     ViewBag.Title = "Startsida";
 }
    
-       <div class="jumbotron">
-        <p>Filtrering av Event</p>
+    <div class="jumbotron">
 
-        @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn btn-primary", @style = "color:white" })
+        <h2 class="Titel text-center" >FILTRERING AV</h2>
+        <h1 class="TitelEvent text-center">EVENTS</h1> <br />
 
-        @Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" }, new { @class = "btn btn-primary", @style = "color:white" })
+            <div style="text-align:center">
+                @Html.ActionLink("Alla", "Index", new { selectedCategory = "" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Bingo", "Index", new { selectedCategory = "Bingo" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Musik", "Index", new { selectedCategory = "Musik" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Festival", "Index", new { selectedCategory = "Festival" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Bingo", "Index", new { selectedCategory = "Bingo" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Loppis", "Index", new { selectedCategory = "Loppis" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Festival", "Index", new { selectedCategory = "Festival" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Loppis", "Index", new { selectedCategory = "Loppis" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Övrigt", "Index", new { selectedCategory = "Övrigt" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Högtid", "Index", new { selectedCategory = "Högtid" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Övrigt", "Index", new { selectedCategory = "Övrigt" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Kultur", "Index", new { selectedCategory = "Kultur" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Högtid", "Index", new { selectedCategory = "Högtid" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Kultur", "Index", new { selectedCategory = "Kultur" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn btn-primary", @style = "color:white" })
-        <br/>
-        <br/>
-        @Html.ActionLink("Utställning", "Index", new { selectedCategory = "Utställning" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Utbildning", "Index", new { selectedCategory = "Utbildning" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Motion", "Index", new { selectedCategory = "Motion" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Tävling", "Index", new { selectedCategory = "Tävling" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Utställning", "Index", new { selectedCategory = "Utställning" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Motion", "Index", new { selectedCategory = "Motion" }, new { @class = "btn brown" })
+            </div>
+            <br />
+            <br />
+            <div style="text-align:center">
+                @Html.ActionLink("Film", "Index", new { selectedCategory = "Film" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Barn & Familj", "Index", new { selectedCategory = "Barn & Familj" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Marknad", "Index", new { selectedCategory = "Marknad" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Klädbytardag", "Index", new { selectedCategory = "Klädbytardag" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Konsert", "Index", new { selectedCategory = "Konsert" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Marknad", "Index", new { selectedCategory = "Marknad" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Ospecificerad", "Index", new { selectedCategory = "Ospecificerad" }, new { @class = "btn btn-primary", @style = "color:white" })
+                @Html.ActionLink("Konsert", "Index", new { selectedCategory = "Konsert" }, new { @class = "btn brown" })
 
-        @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn btn-primary", @style = "color:white" })
-    </div>
+                @Html.ActionLink("Ospecificerad", "Index", new { selectedCategory = "Ospecificerad" }, new { @class = "btn brown" })
+
+                @Html.ActionLink("Sport", "Index", new { selectedCategory = "Sport" }, new { @class = "btn brown" })
+            </div>
+        </div>
+
+
     <div class="row">
 
     @foreach (var item in Model)
@@ -76,14 +84,17 @@
             </p>*@
         </div>
         <div class="overlay">
-                    <p class="text">
-                        Mer om eventet:
-                        @Html.DisplayFor(modelItem => item.Event_Description)
-                        <br />
-                        Stad: @Html.DisplayFor(modelItem => item.Event_Facility.Place.City) 
-                        <br />
-                        Plats: @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name)
-                    </p>
+            <p class="text" style="padding-top:8px">
+                
+                <strong>Mer om eventet:  </strong> <br />
+                @Html.DisplayFor(modelItem => item.Event_Description)
+                <br /> 
+                <strong> Stad:</strong> <br />
+                @Html.DisplayFor(modelItem => item.Event_Facility.Place.City)
+                <br /> 
+              <strong>  Plats:  </strong> <br />
+                @Html.DisplayFor(modelItem => item.Event_Facility.Place.Name)
+            </p>
                     <div class="knappOverlay1">
 
                         @using (Html.BeginForm("Anmalan", "Home", new { eventId = item.Event_id }, FormMethod.Post))
